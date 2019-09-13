@@ -6,23 +6,31 @@ using System.Threading.Tasks;
 using System.IO;
 using StegaSoft;
 
+using Windows.Storage;
+
+using Windows.Storage.Streams;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace StegaSoft
 {
     public class Read
     {
         private int[] StreamDecimal;
-        public string FileName { get; set; }
+        private string MessageDecoder;
+        public StorageFile file  { get; set; }
 
-        public void Operation()
+        public async Task<string>  Operation()
         {
-            StreamDecimal = GetDecs(FileName, 154);
-            GetLowerBit(StreamDecimal);
+             StreamDecimal = await GetDecsAsync(file, 154);
+            string FinalSentence = GetLowerBit(StreamDecimal);
+
+            return FinalSentence;
         }
 
-        private int[] GetDecs(string fileName, int indexBegin)
+        private async Task<int[]> GetDecsAsync(StorageFile file, int indexBegin)
         {
-            byte[] fileBytes = File.ReadAllBytes(fileName);
+            IBuffer buffer = await FileIO.ReadBufferAsync(file);
+            byte[] fileBytes = buffer.ToArray();
             int[] sb = new int[fileBytes.Length];
 
             for (int i = indexBegin; i < fileBytes.Length; i++)
@@ -35,7 +43,7 @@ namespace StegaSoft
             return sb;
         }
 
-        private void GetLowerBit(int[] TabDecs)
+        private string GetLowerBit(int[] TabDecs)
         {
             int RangBit = 7;
             char Voctet = (char)0;
@@ -50,6 +58,7 @@ namespace StegaSoft
                 {
                     if (i < 1616)//à remplacer
                     {
+                        MessageDecoder += Voctet;
                         //Console.Write(Voctet); // On affiche le message caché dans l'image sur la console
 
                     }
@@ -57,6 +66,7 @@ namespace StegaSoft
                     RangBit = 7; //on remet RangBit à 7 pour qu'il se remette à faire des paquets de 8 bits 
                 }
             }
+            return MessageDecoder;
         }
     }
 }

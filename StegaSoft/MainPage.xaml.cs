@@ -18,6 +18,9 @@ using Windows.Storage;
 
 using System.Diagnostics;
 
+using Windows.Storage.Streams;
+
+
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace StegaSoft
@@ -27,10 +30,12 @@ namespace StegaSoft
     /// </summary>
     public sealed partial class MainPage : Page
     {
+
         public MainPage()
         {
            
             this.InitializeComponent();
+
 
         }
         private async void SelectImage_Tapped(object sender, TappedRoutedEventArgs e)
@@ -38,18 +43,30 @@ namespace StegaSoft
             FileOpenPicker openPicker = new FileOpenPicker();
             openPicker.ViewMode = PickerViewMode.Thumbnail;
             openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+
             openPicker.FileTypeFilter.Add(".bmp");
             //openPicker.FileTypeFilter.Add(".png");
+            string MessageDecoder;
 
             StorageFile file = await openPicker.PickSingleFileAsync();
 
             if (file != null)
             {
+
                 var stream = await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
-                var image = new BitmapImage();
-                image.SetSource(stream);
-                Debug.WriteLine(image);
-                ImagePreview.Children.Add(new Image() { Source = image, Width = 300, Height = 300 });
+                var imageForDisplay = new BitmapImage();
+                imageForDisplay.SetSource(stream);
+                ImagePreview.Children.Add(new Image() { Source = imageForDisplay, Width = 300, Height = 300 });
+
+
+
+                Read imageDescript = new Read();
+                imageDescript.file = file;
+                MessageDecoder = await imageDescript.Operation();
+                Console.Write(MessageDecoder);
+                Result.Text = MessageDecoder;
+
+
             }
         }
 
