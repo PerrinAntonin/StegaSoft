@@ -10,8 +10,13 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+
+using Windows.Storage.Pickers;
+using Windows.Storage;
+
+
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -25,6 +30,27 @@ namespace StegaSoft
         public MainPage()
         {
             this.InitializeComponent();
+
         }
+        private async void SelectImage_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            FileOpenPicker openPicker = new FileOpenPicker();
+            openPicker.ViewMode = PickerViewMode.Thumbnail;
+            openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            openPicker.FileTypeFilter.Add(".jpg");
+            openPicker.FileTypeFilter.Add(".png");
+
+            StorageFile file = await openPicker.PickSingleFileAsync();
+
+            if (file != null)
+            {
+                var stream = await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
+                var image = new BitmapImage();
+                image.SetSource(stream);
+                ImagePreview.Children.Add(new Image() { Source = image, Width = 300, Height = 300 });
+            }
+        }
+
     }
 }
+
