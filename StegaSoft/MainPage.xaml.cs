@@ -16,7 +16,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.Storage.Pickers;
 using Windows.Storage;
 
-
+using System.Diagnostics;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -47,6 +47,7 @@ namespace StegaSoft
                 var stream = await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
                 var image = new BitmapImage();
                 image.SetSource(stream);
+                Debug.WriteLine(image);
                 ImagePreview.Children.Add(new Image() { Source = image, Width = 300, Height = 300 });
             }
         }
