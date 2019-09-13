@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
-
+using StegaSoft;
 using Windows.Storage.Pickers;
 using Windows.Storage;
 
@@ -29,6 +29,7 @@ namespace StegaSoft
     {
         public MainPage()
         {
+           
             this.InitializeComponent();
 
         }
@@ -37,8 +38,8 @@ namespace StegaSoft
             FileOpenPicker openPicker = new FileOpenPicker();
             openPicker.ViewMode = PickerViewMode.Thumbnail;
             openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-            openPicker.FileTypeFilter.Add(".jpg");
-            openPicker.FileTypeFilter.Add(".png");
+            openPicker.FileTypeFilter.Add(".bmp");
+            //openPicker.FileTypeFilter.Add(".png");
 
             StorageFile file = await openPicker.PickSingleFileAsync();
 
