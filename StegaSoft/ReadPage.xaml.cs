@@ -18,6 +18,7 @@ using Windows.Storage.Pickers;
 using Windows.Storage;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.System;
+using Windows.ApplicationModel.DataTransfer;
 
 namespace StegaSoft
 {
@@ -26,9 +27,16 @@ namespace StegaSoft
     /// </summary>
     public sealed partial class ReadPage : Page
     {
+
+        //variable pour le decryptage
+        Read imageDescript = new Read();
+        string MessageDecoder;
+
         public ReadPage()
         {
             this.InitializeComponent();
+
+            //Variable Pour le retour arriere
             KeyboardAccelerator GoBack = new KeyboardAccelerator();
             GoBack.Key = VirtualKey.GoBack;
             GoBack.Invoked += BackInvoked;
@@ -39,7 +47,17 @@ namespace StegaSoft
             this.KeyboardAccelerators.Add(AltLeft);
             // ALT routes here
             AltLeft.Modifiers = VirtualKeyModifiers.Menu;
+
+            if (Result.Text != "...")
+            {
+                ButtonGo.IsEnabled = false;
+            }
+            else
+            {
+                ButtonGo.IsEnabled = true;
+            }
         }
+
         private async void SelectImage_Tapped(object sender, TappedRoutedEventArgs e)
         {
             FileOpenPicker openPicker = new FileOpenPicker();
@@ -48,25 +66,20 @@ namespace StegaSoft
 
             openPicker.FileTypeFilter.Add(".bmp");
             //openPicker.FileTypeFilter.Add(".png");
-            string MessageDecoder;
+            
 
             StorageFile file = await openPicker.PickSingleFileAsync();
 
             if (file != null)
             {
-
+                //affecte l'image pour l'affichage
                 var stream = await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
                 var imageForDisplay = new BitmapImage();
                 imageForDisplay.SetSource(stream);
                 ImagePreview.Source = imageForDisplay;
                 ImagePreview.Height = 150;
-
-
-                Read imageDescript = new Read();
+                //affecte l'image pour Read
                 imageDescript.file = file;
-                MessageDecoder = await imageDescript.OperationRead();
-                Console.Write(MessageDecoder);
-                Result.Text = MessageDecoder;
 
 
             }
@@ -97,6 +110,23 @@ namespace StegaSoft
         {
             On_BackRequested();
             args.Handled = true;
+        }
+
+        private async void ButtonGo_Click(object sender, RoutedEventArgs e)
+        {
+            if (imageDescript.file != null)
+            {
+                MessageDecoder = await imageDescript.OperationRead();
+                Result.Text = MessageDecoder;
+            }
+
+        }
+
+        private void CopyResult_Click(object sender, RoutedEventArgs e)
+        {
+            var dataPackage = new DataPackage();
+            dataPackage.SetText(Result.Text);
+            Clipboard.SetContent(dataPackage);
         }
     }
 }

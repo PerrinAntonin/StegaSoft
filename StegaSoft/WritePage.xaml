@@ -9,10 +9,10 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 
-    <Grid x:Name="LayoutRoot" Background="#555555" Width="750" Height="500">
+    <Grid x:Name="LayoutRoot" Background="#555555" >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="650" />
-            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -43,7 +43,7 @@
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Text="message a cacher:" Margin="10" 
                 HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <TextBox Grid.Row="0" Grid.Column="1" Margin="10" Text="Veuillez choisir le message a cacher..." TextWrapping="Wrap" />
+            <TextBox x:Name="messageToHide" Grid.Row="0" Grid.Column="1" Margin="10" Text="Veuillez choisir le message a cacher..." TextWrapping="Wrap" />
 
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Parameter" Margin="10" 
                 HorizontalAlignment="Left" VerticalAlignment="Center" />

@@ -32,32 +32,35 @@
         <Grid x:Name="FormLayoutGrid" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
                 <RowDefinition Height="2*" />
                 <RowDefinition Height="*" />
+ 
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="message a cacher:" Margin="10" 
+            
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Parameter" Margin="10" 
                 HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <TextBox Grid.Row="0" Grid.Column="1" Margin="10" Text="Veuillez choisir le message a cacher..." TextWrapping="Wrap" />
-
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Parameter" Margin="10" 
-                HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <TextBox Grid.Row="1" Grid.Column="1" Margin="10" />
+            <TextBox Grid.Row="0" Grid.Column="1" Margin="10" />
 
             <Button x:Name="SelectImage" Tapped="SelectImage_Tapped" Content="Select Image"
-                    Grid.Row="2" Grid.Column="0" Margin="10"/>
+                    Grid.Row="1" Grid.Column="0" Margin="10"/>
             <Image x:Name="ImagePreview" HorizontalAlignment="Left" VerticalAlignment="Top"
-                    Grid.Row="2" Grid.Column="1" Margin="10"/>
-            <TextBlock Grid.Row="3" Grid.Column="0" Text="Result" Margin="10" 
+                    Grid.Row="1" Grid.Column="1" Margin="10"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Result" Margin="10" 
                 HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <TextBlock x:Name="Result" Grid.Row="3" Grid.Column="1" Text="..." TextWrapping="Wrap" Margin="10" />
-
+            <Grid Grid.Row="2" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="Result" Grid.Row="0" Text="..." TextWrapping="Wrap" Margin="10" />
+                <Button x:Name="CopyResult" Content="Copy" Grid.Row="1" Click="CopyResult_Click"  />
+            </Grid>
         </Grid>
-        <Button Grid.Row="2" Grid.Column="1" Content="Go!" Width="80" Margin="481,610,0,0" VerticalAlignment="Top"  />
+        <Button x:Name="ButtonGo" Grid.Row="2" Grid.Column="1" Content="Go!" Width="80" Margin="481,610,0,0" VerticalAlignment="Top" Click="ButtonGo_Click"  />
 
     </Grid>
 

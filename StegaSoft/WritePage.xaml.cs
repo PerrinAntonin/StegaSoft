@@ -27,6 +27,7 @@ namespace StegaSoft
     /// </summary>
     public sealed partial class WritePage : Page
     {
+        Hide fileEncrypted = new Hide();
         public WritePage()
         {
             this.InitializeComponent();
@@ -40,6 +41,8 @@ namespace StegaSoft
             this.KeyboardAccelerators.Add(AltLeft);
             // ALT routes here
             AltLeft.Modifiers = VirtualKeyModifiers.Menu;
+
+
         }
     
         private async void SelectImage_Tapped(object sender, TappedRoutedEventArgs e)
@@ -62,12 +65,8 @@ namespace StegaSoft
                 imageForDisplay.SetSource(stream);
                 ImagePreview.Source = imageForDisplay;
                 ImagePreview.Height = 150;
-                Hide d = new Hide();
-                d.file = file;
-                d.MessageToHide = "a";
-                d.MessageToBinary(d.MessageToHide);
-                
 
+                fileEncrypted.file = file;
             }
         }
     
@@ -96,6 +95,17 @@ namespace StegaSoft
         {
             On_BackRequested();
             args.Handled = true;
+        }
+    
+
+        private async void ButtonGo_Click(object sender, RoutedEventArgs e)
+        {
+            if (fileEncrypted.file != null && !string.IsNullOrWhiteSpace(messageToHide.Text))
+            {
+                fileEncrypted.MessageToHide = messageToHide.Text;
+                fileEncrypted.MessageToBinary(fileEncrypted.MessageToHide);
+            }
+
         }
     }
 }
