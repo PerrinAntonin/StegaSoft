@@ -13,6 +13,10 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+using Windows.Storage.Pickers;
+using Windows.Storage;
+using Windows.UI.Xaml.Media.Imaging;
+
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace StegaSoft
@@ -25,6 +29,30 @@ namespace StegaSoft
         public WritePage()
         {
             this.InitializeComponent();
+        }
+        private async void SelectImage_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            FileOpenPicker openPicker = new FileOpenPicker();
+            openPicker.ViewMode = PickerViewMode.Thumbnail;
+            openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+
+            openPicker.FileTypeFilter.Add(".bmp");
+            //openPicker.FileTypeFilter.Add(".png");
+            string MessageDecoder;
+
+            StorageFile file = await openPicker.PickSingleFileAsync();
+
+            if (file != null)
+            {
+
+                var stream = await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
+                var imageForDisplay = new BitmapImage();
+                imageForDisplay.SetSource(stream);
+                ImagePreview.Source = imageForDisplay;
+                ImagePreview.Height = 150;
+
+
+            }
         }
     }
 }
