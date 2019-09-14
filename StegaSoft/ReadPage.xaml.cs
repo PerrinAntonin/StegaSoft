@@ -58,7 +58,8 @@ namespace StegaSoft
                 var stream = await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
                 var imageForDisplay = new BitmapImage();
                 imageForDisplay.SetSource(stream);
-                ImagePreview.Children.Add(new Image() { Source = imageForDisplay, Width = 300, Height = 300 });
+                ImagePreview.Source = imageForDisplay;
+                ImagePreview.Height = 150;
 
 
                 Read imageDescript = new Read();
