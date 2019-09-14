@@ -50,7 +50,6 @@ namespace StegaSoft
                 ImagePreview.Children.Add(new Image() { Source = imageForDisplay, Width = 300, Height = 300 });
 
 
-
                 Read imageDescript = new Read();
                 imageDescript.file = file;
                 MessageDecoder = await imageDescript.OperationRead();
@@ -60,5 +59,6 @@ namespace StegaSoft
 
             }
         }
+
     }
 }
