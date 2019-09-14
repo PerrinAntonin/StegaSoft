@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.Storage.Pickers;
 using Windows.Storage;
 using Windows.UI.Xaml.Media.Imaging;
+using Windows.System;
 
 namespace StegaSoft
 {
@@ -28,6 +29,16 @@ namespace StegaSoft
         public ReadPage()
         {
             this.InitializeComponent();
+            KeyboardAccelerator GoBack = new KeyboardAccelerator();
+            GoBack.Key = VirtualKey.GoBack;
+            GoBack.Invoked += BackInvoked;
+            KeyboardAccelerator AltLeft = new KeyboardAccelerator();
+            AltLeft.Key = VirtualKey.Left;
+            AltLeft.Invoked += BackInvoked;
+            this.KeyboardAccelerators.Add(GoBack);
+            this.KeyboardAccelerators.Add(AltLeft);
+            // ALT routes here
+            AltLeft.Modifiers = VirtualKeyModifiers.Menu;
         }
         private async void SelectImage_Tapped(object sender, TappedRoutedEventArgs e)
         {
@@ -60,5 +71,31 @@ namespace StegaSoft
             }
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            BackButton.IsEnabled = this.Frame.CanGoBack;
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            On_BackRequested();
+        }
+
+        // Handles system-level BackRequested events and page-level back button Click events
+        private bool On_BackRequested()
+        {
+            if (this.Frame.CanGoBack)
+            {
+                this.Frame.GoBack();
+                return true;
+            }
+            return false;
+        }
+
+        private void BackInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+        {
+            On_BackRequested();
+            args.Handled = true;
+        }
     }
 }

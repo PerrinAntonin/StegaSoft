@@ -8,14 +8,59 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <Button x:Name="SelectImage"
-                    Tapped="SelectImage_Tapped"
-                    Content="Select Image" />
-        <StackPanel x:Name="ImagePreview"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        Orientation="Horizontal" />
-        <TextBlock x:Name="Result" Text="TextBlock" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+    <Grid x:Name="LayoutRoot" Background="#555555"  >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <CommandBar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <CommandBar.Content>
+                <Button x:Name="BackButton" Click="Back_Click" Style="{StaticResource NavigationBackButtonNormalStyle}" VerticalAlignment="Top"/>
+            </CommandBar.Content>
+
+        </CommandBar>
+        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="60"
+               Text="Unhide Your files " HorizontalAlignment="Center"  Width="1500" TextWrapping="Wrap" MaxLines="3" TextAlignment="Center" Margin="0,101,0,0" LineHeight="150" />
+
+        <Grid x:Name="FormLayoutGrid" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="message a cacher:" Margin="10" 
+                HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <TextBox Grid.Row="0" Grid.Column="1" Margin="10" Text="Veuillez choisir le message a cacher..." TextWrapping="Wrap" />
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Parameter" Margin="10" 
+                HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="10" />
+
+            <Button x:Name="SelectImage" Tapped="SelectImage_Tapped" Content="Select Image"
+                    Grid.Row="2" Grid.Column="0" Margin="10"/>
+            <Image x:Name="ImagePreview" HorizontalAlignment="Left" VerticalAlignment="Top"
+                    Grid.Row="2" Grid.Column="1" Margin="10"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Result" Margin="10" 
+                HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <TextBlock x:Name="Result" Grid.Row="3" Grid.Column="1" Text="..." TextWrapping="Wrap" Margin="10" />
+
+        </Grid>
+        <Button Grid.Row="2" Grid.Column="1" Content="Go!" Width="80" Margin="481,610,0,0" VerticalAlignment="Top"  />
+
     </Grid>
+
+
+
 </Page>
