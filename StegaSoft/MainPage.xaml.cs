@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.System;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -25,7 +27,8 @@ namespace StegaSoft
 
         public MainPage()
         {
-           
+          
+            
             this.InitializeComponent();
             KeyboardAccelerator GoBack = new KeyboardAccelerator();
             GoBack.Key = VirtualKey.GoBack;
@@ -41,6 +44,7 @@ namespace StegaSoft
 
         private void ButtonRead(object sender, RoutedEventArgs e)
         {
+          
             this.Frame.Navigate(typeof(ReadPage));
         }
         private void ButtonWrite(object sender, RoutedEventArgs e)
