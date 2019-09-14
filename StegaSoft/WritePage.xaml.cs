@@ -37,7 +37,7 @@ namespace StegaSoft
             openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
 
             openPicker.FileTypeFilter.Add(".bmp");
-            //openPicker.FileTypeFilter.Add(".png");
+            openPicker.FileTypeFilter.Add(".txt");
             string MessageDecoder;
 
             StorageFile file = await openPicker.PickSingleFileAsync();
@@ -50,7 +50,11 @@ namespace StegaSoft
                 imageForDisplay.SetSource(stream);
                 ImagePreview.Source = imageForDisplay;
                 ImagePreview.Height = 150;
-
+                Hide d = new Hide();
+                d.file = file;
+                d.MessageToHide = "a";
+                d.MessageToBinary(d.MessageToHide);
+                
 
             }
         }

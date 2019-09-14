@@ -17,9 +17,9 @@ namespace StegaSoft
     {
 
         private string MessageDecoder;
-        public StorageFile file  { get; set; }
+       
 
-        public async Task<string>  Operation()
+        public async Task<string>  OperationRead()
         {
             StreamDecimal = await GetDeicmalStream(file, 154);
           

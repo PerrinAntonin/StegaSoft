@@ -53,7 +53,7 @@ namespace StegaSoft
 
                 Read imageDescript = new Read();
                 imageDescript.file = file;
-                MessageDecoder = await imageDescript.Operation();
+                MessageDecoder = await imageDescript.OperationRead();
                 Console.Write(MessageDecoder);
                 Result.Text = MessageDecoder;
 

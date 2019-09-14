@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -24,12 +26,14 @@ namespace StegaSoft
 
         public MainPage()
         {
-           
+          
+            
             this.InitializeComponent();
         }
 
         private void HyperlinkButton_ClickRead(object sender, RoutedEventArgs e)
         {
+          
             this.Frame.Navigate(typeof(ReadPage));
         }
         private void HyperlinkButton_ClickWrite(object sender, RoutedEventArgs e)
