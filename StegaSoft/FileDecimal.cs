@@ -14,7 +14,7 @@ namespace StegaSoft
     {
         //base class, got a method who return the decimal stream of the file in param
         protected int[] StreamDecimal;
-
+        public StorageFile file { get; set; }
         protected async Task<int[]> GetDeicmalStream(StorageFile file, int indexBegin)
         {
             IBuffer buffer = await FileIO.ReadBufferAsync(file);
