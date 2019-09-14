@@ -8,8 +8,33 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <HyperlinkButton Content="Click to go to page 1" Click="HyperlinkButton_ClickRead"  VerticalAlignment="Center" HorizontalAlignment="Left" />
-        <HyperlinkButton Content="Click to go to page 2"  Click="HyperlinkButton_ClickWrite" VerticalAlignment="Center" HorizontalAlignment="Right" />
+
+    <Grid x:Name="LayoutRoot" Background="#555555" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <CommandBar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <CommandBar.Content>
+                <Button x:Name="BackButton" Click="Back_Click" Style="{StaticResource NavigationBackButtonNormalStyle}" VerticalAlignment="Top"/>
+            </CommandBar.Content>
+
+        </CommandBar>
+        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="60"
+               Text="Hide and Unhide Your files easily thanks the steganographie." HorizontalAlignment="Center"  Width="1500" TextWrapping="Wrap" MaxLines="3" TextAlignment="Center" Margin="0,101,0,0" LineHeight="150" />
+
+        <Button Grid.Row="2" Grid.Column="0" Content="Click to go to page 1" Click="ButtonRead"  VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <Button Grid.Row="2" Grid.Column="1" Content="Click to go to page 2"  Click="ButtonWrite" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+
+
     </Grid>
+
+
 </Page>
