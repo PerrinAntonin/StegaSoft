@@ -64,8 +64,8 @@ namespace StegaSoft
                 ImagePreview.Height = 150;
                 Hide d = new Hide();
                 d.file = file;
-                d.MessageToHide = "a";
-                d.MessageToBinary(d.MessageToHide);
+                d.MessageToHide = "aazertui";
+                d.MessageToBinary();
                 
 
             }

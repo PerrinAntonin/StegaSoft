@@ -19,15 +19,16 @@ namespace StegaSoft
         private string str_MsgBinary;
         private byte[] MessageByte;
 
-        public void MessageToBinary(string Msg)//convert the message in binary
+        public void MessageToBinary()//convert the message in binary
         {
            
-            MessageByte = Encoding.ASCII.GetBytes(Msg);
+            MessageByte = Encoding.ASCII.GetBytes(MessageToHide);
        
             for (int i = 0; i < MessageByte.Length; i++)
             {
                 str_MsgBinary = str_MsgBinary + Convert.ToString(MessageByte[i], 2).PadLeft(8, '0');
             }
+            MessageSize = str_MsgBinary.Length;
             FileToBinary();
         }
 
@@ -40,7 +41,7 @@ namespace StegaSoft
             for (int i = 0; i < StreamDecimal.Length; i++)
             {
                 CharArray[i] = Convert.ToChar(StreamDecimal[i]);
-
+           
             }
             
             FileBytebinary = Encoding.ASCII.GetBytes(CharArray);
@@ -48,11 +49,36 @@ namespace StegaSoft
             {
                 FileBinary = FileBinary + Convert.ToString(FileBytebinary[i], 2).PadLeft(8, '0');
             }
+            ComputeHide();
 
-         
-            deb();
+            //deb();
         }
 
+        private StringBuilder ComputeHide()//hide the data in the file
+        {
+           StringBuilder FileModified= new StringBuilder(FileBinary);
+           FileModified.Capacity = FileBinary.Length;
+           int CompteurMessageIndex=0;
+           for (int i = 154; i < FileBinary.Length; ++i)
+           {
+                FileModified[i] = FileBinary[i];
+                if (i % 8 == 0&&CompteurMessageIndex<MessageSize) {
+
+                    FileModified[i] = str_MsgBinary[CompteurMessageIndex];
+                    ++CompteurMessageIndex;
+                }
+           }
+            CreateFile();
+            deb();
+            return FileModified;
+        }
+        public async void CreateFile()
+        {
+            Windows.Storage.StorageFolder storageFolder =Windows.Storage.ApplicationData.Current.LocalFolder;
+            Windows.Storage.StorageFile sampleFile =
+                await storageFolder.CreateFileAsync("BADDRAGON.txt",
+                    Windows.Storage.CreationCollisionOption.ReplaceExisting);
+        }
         public async void deb()
         {
 
