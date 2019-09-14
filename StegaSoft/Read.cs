@@ -13,37 +13,22 @@ using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace StegaSoft
 {
-    public class Read
+    public class Read : FileDecimal
     {
-        private int[] StreamDecimal;
+
         private string MessageDecoder;
         public StorageFile file  { get; set; }
 
         public async Task<string>  Operation()
         {
-             StreamDecimal = await GetDecsAsync(file, 154);
-            string FinalSentence = GetLowerBit(StreamDecimal);
+            StreamDecimal = await GetDeicmalStream(file, 154);
+          
 
-            return FinalSentence;
+            return GetHideMessage(StreamDecimal); 
         }
 
-        private async Task<int[]> GetDecsAsync(StorageFile file, int indexBegin)
-        {
-            IBuffer buffer = await FileIO.ReadBufferAsync(file);
-            byte[] fileBytes = buffer.ToArray();
-            int[] sb = new int[fileBytes.Length];
 
-            for (int i = indexBegin; i < fileBytes.Length; i++)
-            {
-
-                sb[i - indexBegin] = fileBytes[i];
-
-            }
-
-            return sb;
-        }
-
-        private string GetLowerBit(int[] TabDecs)
+        private string GetHideMessage(int[] TabDecs)
         {
             int RangBit = 7;
             char Voctet = (char)0;
