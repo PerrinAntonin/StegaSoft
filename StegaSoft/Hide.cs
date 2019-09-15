@@ -21,7 +21,7 @@ namespace StegaSoft
         private string str_MsgBinary;
         private byte[] MessageByte;
 
-        public async void MessageToAscii()//convert the message in binary
+        public void MessageToAscii()//convert the message in binary
         {
            
             MessageByte = Encoding.ASCII.GetBytes(MessageToHide);
@@ -37,11 +37,11 @@ namespace StegaSoft
         public async void FileToBinary()//convert the file (image) in binary 
         {
             //a changer
-            StreamDecimal = await GetDeicmalStream(file, 0);
+            StreamDecimal = await GetDeicmalStream(file, 154);
 
             for (int i = 0; i < StreamDecimal.Length; i++)
             {
-                string binary = Convert.ToString(StreamDecimal[i], 2);
+                string binary = Convert.ToString(StreamDecimal[i], 2).PadLeft(8, '0');
                 FileBinary += binary;
             }
              
@@ -56,7 +56,7 @@ namespace StegaSoft
 
            FileModified.Capacity = FileBinary.Length;
            int CompteurMessageIndex=0;
-            //a changer
+            //a changer peut etre
            for (int i = 0; i < FileBinary.Length; ++i)
            {
                 FileModified[i] = FileBinary[i];
@@ -69,27 +69,13 @@ namespace StegaSoft
 
             //CreateFile(FileModified);
 
-            FinalsFile = ConvertBitsToChar(FileModified);
+            FinalsFile = BinaryToString(FileModified.ToString());
             //deb();
 
         }
-        public async void CreateFile(StringBuilder message)
-        {
 
-            Windows.Storage.StorageFolder storageFolder =Windows.Storage.ApplicationData.Current.LocalFolder;
-            Windows.Storage.StorageFile sampleFile =
-                await storageFolder.CreateFileAsync("BADDRAGON.txt",
-                    Windows.Storage.CreationCollisionOption.ReplaceExisting);
-            //WriteFile(sampleFile, ConvertBitsToChar(message));
-        }
-        public async void WriteFile(Windows.Storage.StorageFile sampleFile, string message)
-        {
-            await Windows.Storage.FileIO.WriteTextAsync(sampleFile, message);
-        }
         public async void deb()
         {
-
-
             var dialog = new MessageDialog(FileBinary);
             await dialog.ShowAsync();
         }
@@ -98,27 +84,19 @@ namespace StegaSoft
         public async void OperationHide()
         {
             StreamDecimal = await GetDeicmalStream(file, 154);
-            
-            
         }
 
-        public string ConvertBitsToChar(StringBuilder message)
+
+        public static string BinaryToString(string data)
         {
-            string messageInBits= message.ToString();
+            List<Byte> byteList = new List<Byte>();
 
-
-            string result = "";
-            while (message.Length > 0)
+            for (int i = 0; i < data.Length; i += 8)
             {
-                var first8 = messageInBits.Substring(0, 8);
-                messageInBits = messageInBits.Substring(8);
-                var number = Convert.ToInt32(first8, 2);
-                result += (char)number;
+                byteList.Add(Convert.ToByte(data.Substring(i, 8), 2));
             }
-            return result;
+            return Encoding.ASCII.GetString(byteList.ToArray());
         }
-
-
 
 
     }
