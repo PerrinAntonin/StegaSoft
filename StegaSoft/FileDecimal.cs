@@ -21,7 +21,9 @@ namespace StegaSoft
         protected async Task<int[]> GetDeicmalStream(StorageFile file, int indexBegin)
         {
             IBuffer buffer = await FileIO.ReadBufferAsync(file);
+
             byte[] fileBytes = buffer.ToArray();
+
             int[] sb = new int[fileBytes.Length];
 
             for (int i = indexBegin; i < fileBytes.Length; i++)
@@ -32,6 +34,14 @@ namespace StegaSoft
             }
 
             return sb;
+        }
+
+        protected async Task<byte[]> GetBytes(StorageFile file)
+        {
+             IBuffer buffer = await FileIO.ReadBufferAsync(file);
+
+            byte[] fileBytes = buffer.ToArray();
+            return fileBytes;
         }
 
         public async void deb()

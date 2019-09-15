@@ -110,7 +110,7 @@ namespace StegaSoft
             savePicker.SuggestedStartLocation =
                 Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
             // Dropdown of file types the user can save the file as
-            savePicker.FileTypeChoices.Add("Plain Text", new List<string>() { ".bmp" });
+            savePicker.FileTypeChoices.Add("Bitmap", new List<string>() { ".bmp" });
             // Default file name if the user does not type one in or select a file to replace
             savePicker.SuggestedFileName = "VacationPictures";
 

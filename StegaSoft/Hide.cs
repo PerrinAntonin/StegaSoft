@@ -43,6 +43,7 @@ namespace StegaSoft
             endMessagePosition = HeaderFilePosition + MessageToHide.Length;
             //a changer
             StreamDecimal = await GetDeicmalStream(file, 0);
+            byte[] test = await GetBytes(file);
 
             //convertir la portion du fichier ou devra etre caché le message
             for (int i = HeaderFilePosition; i < endMessagePosition; i++)
@@ -52,18 +53,26 @@ namespace StegaSoft
             } 
             
             ComputeHide();
-            for (int i = 0; i < StreamDecimal.Length; i++)
+            FinalsFiles += Encoding.ASCII.GetString(test,0,154);
+
+            byte[] bytes = Encoding.ASCII.GetBytes(PartFileModifed);
+            FinalsFiles += Encoding.ASCII.GetString(bytes, 155,100);
+            /*
+            for (int i = 154; i < StreamDecimal.Length; i++)
             {
-                if (i< endMessagePosition && i> HeaderFilePosition)
+
+                if ( i < endMessagePosition)
                 {
                     FinalsFiles += PartFileModifed[i- HeaderFilePosition];
                 }
                 else
                 {
                     FinalsFiles += (char)StreamDecimal[i];
+                    //FinalsFiles += Encoding.ASCII.GetString(test);
                 }
 
             }
+            */
             
         }
 
@@ -85,8 +94,9 @@ namespace StegaSoft
            }
 
             //CreateFile(FileModified);
-
-            PartFileModifed = BinaryToString(FileModified.ToString());
+            // a tester
+            //PartFileModifed = BinaryToString(FileModified.ToString());
+            PartFileModifed = FileModified.ToString();
             //deb();
 
         }
@@ -115,6 +125,23 @@ namespace StegaSoft
             return Encoding.ASCII.GetString(byteList.ToArray());
         }
 
+        public async void test()
+        {
+            StreamDecimal = await GetDeicmalStream(file, 154);
+            char[] CharArray = new char[StreamDecimal.Length];
 
+            for (int i = 0; i < StreamDecimal.Length; i++)
+            {
+                CharArray[i] = Convert.ToChar(StreamDecimal[i]);
+
+            }
+
+            FileBytebinary = Encoding.ASCII.GetBytes(CharArray);
+            for (int i = 0; i < FileBytebinary.Length; i++)
+            {
+                FileBinary = FileBinary + Convert.ToString(FileBytebinary[i], 2).PadLeft(8, '0');
+            }
+        }
+        
     }
 }
