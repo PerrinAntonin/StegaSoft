@@ -110,7 +110,7 @@ namespace StegaSoft
             savePicker.SuggestedStartLocation =
                 Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
             // Dropdown of file types the user can save the file as
-            savePicker.FileTypeChoices.Add("Plain Text", new List<string>() { ".txt" });
+            savePicker.FileTypeChoices.Add("Plain Text", new List<string>() { ".bmp" });
             // Default file name if the user does not type one in or select a file to replace
             savePicker.SuggestedFileName = "VacationPictures";
 
@@ -126,7 +126,7 @@ namespace StegaSoft
                     // we finish making changes and call CompleteUpdatesAsync.
                     Windows.Storage.CachedFileManager.DeferUpdates(file);
                     // write to file
-                    await Windows.Storage.FileIO.WriteTextAsync(file, fileEncrypted.FinalsFile);
+                    await Windows.Storage.FileIO.WriteTextAsync(file, fileEncrypted.FinalsFiles);
                     // Let Windows know that we're finished changing the file so
                     // the other app can update the remote version of the file.
                     // Completing updates may require Windows to ask for user input.

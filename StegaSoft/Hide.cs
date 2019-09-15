@@ -12,10 +12,13 @@ namespace StegaSoft
     {
         public string MessageToHide { get; set; }
 
+        public int HeaderFilePosition = 0;
+        public int endMessagePosition;
         private string FileBinary;
         private byte[] FileBytebinary;
 
-        public string FinalsFile;
+        public string FinalsFiles;
+        public string PartFileModifed;
 
         private int MessageSize;
         private string str_MsgBinary;
@@ -23,7 +26,7 @@ namespace StegaSoft
 
         public void MessageToAscii()//convert the message in binary
         {
-           
+            
             MessageByte = Encoding.ASCII.GetBytes(MessageToHide);
        
             for (int i = 0; i < MessageByte.Length; i++)
@@ -36,18 +39,32 @@ namespace StegaSoft
 
         public async void FileToBinary()//convert the file (image) in binary 
         {
+            HeaderFilePosition = 154;
+            endMessagePosition = HeaderFilePosition + MessageToHide.Length;
             //a changer
-            StreamDecimal = await GetDeicmalStream(file, 154);
+            StreamDecimal = await GetDeicmalStream(file, 0);
 
-            for (int i = 0; i < StreamDecimal.Length; i++)
+            //convertir la portion du fichier ou devra etre caché le message
+            for (int i = HeaderFilePosition; i < endMessagePosition; i++)
             {
                 string binary = Convert.ToString(StreamDecimal[i], 2).PadLeft(8, '0');
                 FileBinary += binary;
-            }
-             
-             ComputeHide();
+            } 
+            
+            ComputeHide();
+            for (int i = 0; i < StreamDecimal.Length; i++)
+            {
+                if (i< endMessagePosition && i> HeaderFilePosition)
+                {
+                    FinalsFiles += PartFileModifed[i- HeaderFilePosition];
+                }
+                else
+                {
+                    FinalsFiles += (char)StreamDecimal[i];
+                }
 
-            //deb();
+            }
+            
         }
 
         private void ComputeHide()//hide the data in the file
@@ -69,14 +86,14 @@ namespace StegaSoft
 
             //CreateFile(FileModified);
 
-            FinalsFile = BinaryToString(FileModified.ToString());
+            PartFileModifed = BinaryToString(FileModified.ToString());
             //deb();
 
         }
 
         public async void deb()
         {
-            var dialog = new MessageDialog(FileBinary);
+            var dialog = new MessageDialog(file.ToString());
             await dialog.ShowAsync();
         }
 

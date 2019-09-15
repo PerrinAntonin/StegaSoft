@@ -7,11 +7,14 @@ using System.Threading.Tasks;
 
 using Windows.Storage;
 using Windows.Storage.Streams;
+using Windows.UI.Popups;
 
 namespace StegaSoft
 {
     public class FileDecimal
     {
+
+
         //base class, got a method who return the decimal stream of the file in param
         protected int[] StreamDecimal;
         public StorageFile file { get; set; }
@@ -29,6 +32,12 @@ namespace StegaSoft
             }
 
             return sb;
+        }
+
+        public async void deb()
+        {
+            var dialog = new MessageDialog("coucou");
+            await dialog.ShowAsync();
         }
     }
 }
