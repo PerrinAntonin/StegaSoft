@@ -36,20 +36,15 @@ namespace StegaSoft
 
         public async void FileToBinary()//convert the file (image) in binary 
         {
-            StreamDecimal = await GetDeicmalStream(file, 154);
-            char[] CharArray = new char[StreamDecimal.Length];
+            //a changer
+            StreamDecimal = await GetDeicmalStream(file, 0);
 
             for (int i = 0; i < StreamDecimal.Length; i++)
             {
-                CharArray[i] = Convert.ToChar(StreamDecimal[i]);
-           
+                string binary = Convert.ToString(StreamDecimal[i], 2);
+                FileBinary += binary;
             }
-            
-            FileBytebinary = Encoding.ASCII.GetBytes(CharArray);
-            for (int i = 0; i < FileBytebinary.Length; i++)
-            {
-                FileBinary = FileBinary + Convert.ToString(FileBytebinary[i], 2).PadLeft(8, '0');
-            }
+             
              ComputeHide();
 
             //deb();
@@ -61,7 +56,8 @@ namespace StegaSoft
 
            FileModified.Capacity = FileBinary.Length;
            int CompteurMessageIndex=0;
-           for (int i = 154; i < FileBinary.Length; ++i)
+            //a changer
+           for (int i = 0; i < FileBinary.Length; ++i)
            {
                 FileModified[i] = FileBinary[i];
                 if (i % 7 == 0&&CompteurMessageIndex<MessageSize &&i>154) {
