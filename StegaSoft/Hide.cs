@@ -17,7 +17,7 @@ namespace StegaSoft
         private string FileBinary;
         private byte[] FileBytebinary;
 
-        public byte[] FinalsFiles;
+        public byte[] FinalsFiles ;
         public string PartFileModifed;
   
 
@@ -42,12 +42,14 @@ namespace StegaSoft
         {
             HeaderFilePosition = 154;
             endMessagePosition = HeaderFilePosition + MessageToHide.Length;
-            //a changer
-            StreamDecimal = await GetDeicmalStream(file, 0);
+
             byte[] File = await GetBytes(file);
+            int byteLength = System.Buffer.ByteLength(File);
             //Ajoue du header
-            Array.Copy(File, 0, FinalsFiles, 0, File.Length);
+            FinalsFiles = new byte[byteLength];
+            Array.Copy(File, 0, FinalsFiles,0, byteLength);
             //Ajoue de la parti avec le message caché
+
             ComputeHide();
 
             //Ajoue de la fin
