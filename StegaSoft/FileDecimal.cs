@@ -36,25 +36,11 @@ namespace StegaSoft
             return sb;
         }
 
-        protected async Task<byte[]> GetBytes(StorageFile file)
+        protected async Task<Byte[]> GetBytes(StorageFile file)
         {
              IBuffer buffer = await FileIO.ReadBufferAsync(file);
 
             byte[] fileBytes = buffer.ToArray();
-
-
-
-
-            var enc = new UTF32Encoding();
-            String s = "This ªªªªªªicodetring";
-
-            // Encode the string.
-            Byte[] encodedBytes = enc.GetBytes(s);
-
-
-            String decodedString = enc.GetString(encodedBytes);
-            var dialog = new MessageDialog(decodedString);
-            await dialog.ShowAsync();
 
             return fileBytes;
         }

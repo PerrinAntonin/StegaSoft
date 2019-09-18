@@ -17,6 +17,8 @@ using Windows.Storage.Pickers;
 using Windows.Storage;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.System;
+using System.Text;
+using Windows.Storage.Streams;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -29,7 +31,9 @@ namespace StegaSoft
     {
         Hide fileEncrypted = new Hide();
 
-
+        public Windows.Storage.Streams.UnicodeEncoding UnicodeEncoding { get; private set; }
+        public Windows.Storage.Streams.UnicodeEncoding Utf16LE { get; private set; }
+        public Windows.Storage.Streams.UnicodeEncoding Utf32 { get; private set; }
 
         public WritePage()
         {
@@ -117,19 +121,15 @@ namespace StegaSoft
 
             if (fileEncrypted.file != null && !string.IsNullOrWhiteSpace(messageToHide.Text))
             {
+
                 fileEncrypted.MessageToHide = messageToHide.Text;
                 fileEncrypted.MessageToAscii();
                 Windows.Storage.StorageFile file = await savePicker.PickSaveFileAsync();
                 if (file != null)
                 {
-                    // Prevent updates to the remote version of the file until
-                    // we finish making changes and call CompleteUpdatesAsync.
-                    Windows.Storage.CachedFileManager.DeferUpdates(file);
-                    // write to file
-                    await Windows.Storage.FileIO.WriteTextAsync(file, fileEncrypted.FinalsFiles);
-                    // Let Windows know that we're finished changing the file so
-                    // the other app can update the remote version of the file.
-                    // Completing updates may require Windows to ask for user input.
+                   
+                    await FileIO.WriteBytesAsync(file, fileEncrypted.FinalsFiles);
+
                     Windows.Storage.Provider.FileUpdateStatus status =
                         await Windows.Storage.CachedFileManager.CompleteUpdatesAsync(file);
                     if (status == Windows.Storage.Provider.FileUpdateStatus.Complete)

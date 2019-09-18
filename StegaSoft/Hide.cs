@@ -17,8 +17,9 @@ namespace StegaSoft
         private string FileBinary;
         private byte[] FileBytebinary;
 
-        public string FinalsFiles;
+        public byte[] FinalsFiles;
         public string PartFileModifed;
+  
 
         private int MessageSize;
         private string str_MsgBinary;
@@ -43,37 +44,15 @@ namespace StegaSoft
             endMessagePosition = HeaderFilePosition + MessageToHide.Length;
             //a changer
             StreamDecimal = await GetDeicmalStream(file, 0);
-            byte[] test = await GetBytes(file);
-
-            //convertir la portion du fichier ou devra etre caché le message
-            for (int i = HeaderFilePosition; i < endMessagePosition; i++)
-            {
-                string binary = Convert.ToString(StreamDecimal[i], 2).PadLeft(8, '0');
-                FileBinary += binary;
-            } 
-            
+            byte[] File = await GetBytes(file);
+            //Ajoue du header
+            Array.Copy(File, 0, FinalsFiles, 0, File.Length);
+            //Ajoue de la parti avec le message caché
             ComputeHide();
-            FinalsFiles += Encoding.ASCII.GetString(test,0,154);
 
-            byte[] bytes = Encoding.ASCII.GetBytes(PartFileModifed);
-            FinalsFiles += Encoding.ASCII.GetString(bytes, 155,100);
-            /*
-            for (int i = 154; i < StreamDecimal.Length; i++)
-            {
+            //Ajoue de la fin
+            //Array.Copy(File, endMessagePosition, FinalsFiles, endMessagePosition, 154);
 
-                if ( i < endMessagePosition)
-                {
-                    FinalsFiles += PartFileModifed[i- HeaderFilePosition];
-                }
-                else
-                {
-                    FinalsFiles += (char)StreamDecimal[i];
-                    //FinalsFiles += Encoding.ASCII.GetString(test);
-                }
-
-            }
-            */
-            
         }
 
         private void ComputeHide()//hide the data in the file
