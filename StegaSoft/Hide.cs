@@ -61,13 +61,12 @@ namespace StegaSoft
 
            FileModified.Capacity = FileBinary.Length;
            int CompteurMessageIndex=0;
-            //a changer peut etre
-           for (int i = 0; i < FileBinary.Length; ++i)
+           
+           for (int i = 0; i < FinalsFiles.Length; ++i)//will change the byte of the original file and hide new byte that contain the message
            {
-                FileModified[i] = FileBinary[i];
-                if (i % 7 == 0&&CompteurMessageIndex<MessageSize &&i>154) {
+                if (i % 7 == 0 && CompteurMessageIndex < MessageSize && i>154) {
 
-                    FileModified[i] = str_MsgBinary[CompteurMessageIndex];
+                    FinalsFiles[i] = (byte)str_MsgBinary[CompteurMessageIndex];
                     ++CompteurMessageIndex;
                 }
            }
