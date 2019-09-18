@@ -45,23 +45,19 @@ namespace StegaSoft
 
             byte[] File = await GetBytes(file);
             int byteLength = System.Buffer.ByteLength(File);
-            //Ajoue du header
+            //Copi du fichier
             FinalsFiles = new byte[byteLength];
             Array.Copy(File, 0, FinalsFiles,0, byteLength);
             //Ajoue de la parti avec le message caché
-
             ComputeHide();
 
-            //Ajoue de la fin
-            //Array.Copy(File, endMessagePosition, FinalsFiles, endMessagePosition, 154);
 
         }
 
-        private void ComputeHide()//hide the data in the file
+        //hide the data in the file
+        private void ComputeHide()
         {
-           StringBuilder FileModified= new StringBuilder(FileBinary);
 
-           FileModified.Capacity = FileBinary.Length;
            int CompteurMessageIndex=0;
            
            for (int i = 0; i < FinalsFiles.Length; ++i)//will change the byte of the original file and hide new byte that contain the message
@@ -72,12 +68,6 @@ namespace StegaSoft
                     ++CompteurMessageIndex;
                 }
            }
-
-            //CreateFile(FileModified);
-            // a tester
-            //PartFileModifed = BinaryToString(FileModified.ToString());
-            PartFileModifed = FileModified.ToString();
-            //deb();
 
         }
 
