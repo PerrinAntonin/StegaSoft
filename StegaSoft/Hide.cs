@@ -62,21 +62,26 @@ namespace StegaSoft
            
            for (int i = 0; i < FinalsFiles.Length; ++i)//will change the byte of the original file and hide new byte that contain the message
            {
-                if (i % 7 == 0 && CompteurMessageIndex < MessageSize && i>154) {
+                if (i % 7 == 0 && CompteurMessageIndex < MessageSize && i> HeaderFilePosition) {
+                    string bites= BitConverter.ToString(BitConverter.GetBytes(str_MsgBinary[CompteurMessageIndex]));
+                    bites = bites.Remove(bites.Length - 1, 1) + str_MsgBinary[CompteurMessageIndex];
+                    FinalsFiles[i] = Encoding.ASCII.GetBytes(bites);
 
-                    FinalsFiles[i] = (byte)str_MsgBinary[CompteurMessageIndex];
                     ++CompteurMessageIndex;
                 }
            }
 
         }
 
-        public async void deb()
+        public async void deb(string test)
         {
-            var dialog = new MessageDialog(file.ToString());
+            var dialog = new MessageDialog(test);
             await dialog.ShowAsync();
         }
-
+        public static int GetLSB(short shortValue)
+        {
+            return (shortValue & 0x00FF);
+        }
 
         public async void OperationHide()
         {
