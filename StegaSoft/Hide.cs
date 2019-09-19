@@ -36,13 +36,14 @@ namespace StegaSoft
                 str_MsgBinary = str_MsgBinary + Convert.ToString(MessageByte[i], 2).PadLeft(8, '0');
             }
             MessageSize = str_MsgBinary.Length;
+
             FileToBinary();
         }
 
         public async void FileToBinary()//convert the file (image) in binary 
         {
             HeaderFilePosition = 154;
-            endMessagePosition = HeaderFilePosition + MessageToHide.Length;
+            endMessagePosition = HeaderFilePosition + MessageSize;
 
             byte[] File = await GetBytes(file);
             int byteLength = System.Buffer.ByteLength(File);
@@ -60,8 +61,8 @@ namespace StegaSoft
         {
 
            int CompteurMessageIndex=0;
-           StringBuilder yourBinaryString=new StringBuilder();
-           for (int i = HeaderFilePosition+1 ; i < MessageSize; ++i)//will change the byte of the original file and hide new byte that contain the message
+           //StringBuilder yourBinaryString=new StringBuilder();
+           for (int i = HeaderFilePosition ; i < endMessagePosition; ++i)//will change the byte of the original file and hide new byte that contain the message
            {
 
                 //yourBinaryString.Append(Convert.ToString(FinalsFiles[i], 2).PadLeft(8, '0'));
@@ -70,7 +71,7 @@ namespace StegaSoft
                     //string bites= bitconverter.tostring(bitconverter.getbytes(str_msgbinary[compteurmessageindex]));
                     if(FinalsFiles[i]% 2==0 )
                     {
-                        if(str_MsgBinary[CompteurMessageIndex] != 0)
+                        if(str_MsgBinary[CompteurMessageIndex].ToString() == "1")
                         {
                             //set binary 1 string in finaslFiles
                             //byte lower = Convert.ToByte(FinalsFiles[i] & 0x00FF);
@@ -81,7 +82,7 @@ namespace StegaSoft
                     }
                     else
                     {
-                        if (str_MsgBinary[CompteurMessageIndex] == 0)
+                        if (str_MsgBinary[CompteurMessageIndex].ToString() == "0")
                         {
                             //set binary 0 string in finaslFiles
                             //byte lower = Convert.ToByte(FinalsFiles[i] & 0x00FF);
