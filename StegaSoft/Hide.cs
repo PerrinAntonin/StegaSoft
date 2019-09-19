@@ -10,6 +10,7 @@ namespace StegaSoft
 {
     public class Hide : FileDecimal
     {
+
         public string MessageToHide { get; set; }
 
         public int HeaderFilePosition = 0;
@@ -59,17 +60,46 @@ namespace StegaSoft
         {
 
            int CompteurMessageIndex=0;
-           
-           for (int i = 0; i < FinalsFiles.Length; ++i)//will change the byte of the original file and hide new byte that contain the message
+           StringBuilder yourBinaryString=new StringBuilder();
+           for (int i = HeaderFilePosition+1 ; i < MessageSize; ++i)//will change the byte of the original file and hide new byte that contain the message
            {
-                if (i % 7 == 0 && CompteurMessageIndex < MessageSize && i> HeaderFilePosition) {
-                    string bites= BitConverter.ToString(BitConverter.GetBytes(str_MsgBinary[CompteurMessageIndex]));
-                    bites = bites.Remove(bites.Length - 1, 1) + str_MsgBinary[CompteurMessageIndex];
-                    FinalsFiles[i] = Encoding.ASCII.GetBytes(bites);
 
+                //yourBinaryString.Append(Convert.ToString(FinalsFiles[i], 2).PadLeft(8, '0'));
+                //if (CompteurMessageIndex < MessageSize && i > HeaderFilePosition)
+                //{
+                    //string bites= bitconverter.tostring(bitconverter.getbytes(str_msgbinary[compteurmessageindex]));
+                    if(FinalsFiles[i]% 2==0 )
+                    {
+                        if(str_MsgBinary[CompteurMessageIndex] != 0)
+                        {
+                            //set binary 1 string in finaslFiles
+                            //byte lower = Convert.ToByte(FinalsFiles[i] & 0x00FF);
+                            ++FinalsFiles[i];
+                       
+                        }
+                        
+                    }
+                    else
+                    {
+                        if (str_MsgBinary[CompteurMessageIndex] == 0)
+                        {
+                            //set binary 0 string in finaslFiles
+                            //byte lower = Convert.ToByte(FinalsFiles[i] & 0x00FF);
+                            //FinalsFiles[i] = lower;
+                            --FinalsFiles[i];
+                        }
+                    }
                     ++CompteurMessageIndex;
-                }
-           }
+                    //yourbinarystring.append(convert.tostring(finalsfiles[i], 2).padleft(8, '0'));
+                    //yourbinarystring[i] = str_msgbinary[CompteurMessageIndex];
+                    //bites = bites.remove(bites.length - 1, 1) + str_msgbinary[CompteurMessageIndex];
+                    //finalsfiles[i] = encoding.ascii.getbytes(bites);
+
+
+               
+            }
+
+
 
         }
 
