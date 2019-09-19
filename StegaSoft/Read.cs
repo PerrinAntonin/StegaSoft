@@ -22,8 +22,6 @@ namespace StegaSoft
         public async Task<string>  OperationRead()
         {
             StreamDecimal = await GetDeicmalStream(file, 154);
-          
-
             return GetHideMessage(StreamDecimal); 
         }
 
@@ -35,7 +33,6 @@ namespace StegaSoft
             int i = 0;
             while (i != TabDecs.Length)
             {
-
                 Voctet += (char)(Math.Abs(TabDecs[i] % 2) * Math.Pow(2, RangBit));
                 i++;
                 RangBit--;
@@ -44,7 +41,6 @@ namespace StegaSoft
                     if (i < 1616)//à remplacer
                     {
                         MessageDecoder += Voctet;
-                        //Console.Write(Voctet); // On affiche le message caché dans l'image sur la console
 
                     }
                     Voctet = (char)0;//on réinitialise Voctet pour qu'il puisse être pret à contenir le prochain octet 

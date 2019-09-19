@@ -13,8 +13,6 @@ namespace StegaSoft
 {
     public class FileDecimal
     {
-
-
         //base class, got a method who return the decimal stream of the file in param
         protected int[] StreamDecimal;
         public StorageFile file { get; set; }
@@ -28,9 +26,7 @@ namespace StegaSoft
 
             for (int i = indexBegin; i < fileBytes.Length; i++)
             {
-
                 sb[i - indexBegin] = fileBytes[i];
-
             }
 
             return sb;
@@ -47,7 +43,7 @@ namespace StegaSoft
 
         public async void deb()
         {
-            var dialog = new MessageDialog("coucou");
+            var dialog = new MessageDialog("test");
             await dialog.ShowAsync();
         }
     }
