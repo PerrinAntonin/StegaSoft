@@ -17,7 +17,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <CommandBar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
@@ -27,20 +27,21 @@
 
         </CommandBar>
         <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="60"
-               Text="Unhide Your files " HorizontalAlignment="Center"  Width="1500" TextWrapping="Wrap" MaxLines="3" TextAlignment="Center" Margin="0,101,0,0" LineHeight="150" />
+               Text="Unhide Your files " HorizontalAlignment="Center"   TextWrapping="Wrap" MaxLines="3" TextAlignment="Center"  LineHeight="150" />
 
         <Grid x:Name="FormLayoutGrid" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="2*" />
                 <RowDefinition Height="*" />
- 
+
             </Grid.RowDefinitions>
-            
+
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Parameter" Margin="10" 
                 HorizontalAlignment="Left" VerticalAlignment="Center" />
             <TextBox Grid.Row="0" Grid.Column="1" Margin="10" />
@@ -59,11 +60,9 @@
                 <TextBlock x:Name="Result" Grid.Row="0" Text="..." TextWrapping="Wrap" Margin="10" />
                 <Button x:Name="CopyResult" Content="Copy" Grid.Row="1" Click="CopyResult_Click"  />
             </Grid>
+            <Button x:Name="ButtonGo" Grid.Row="2" Grid.Column="2" Content="Go!" Width="80" VerticalAlignment="Center" HorizontalAlignment="Center" Click="ButtonGo_Click"/>
         </Grid>
-        <Button x:Name="ButtonGo" Grid.Row="2" Grid.Column="1" Content="Go!" Width="80" Margin="481,610,0,0" VerticalAlignment="Top" Click="ButtonGo_Click"  />
 
     </Grid>
-
-
-
+    
 </Page>
