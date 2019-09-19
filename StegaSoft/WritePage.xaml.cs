@@ -59,7 +59,6 @@ namespace StegaSoft
             openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
 
             openPicker.FileTypeFilter.Add(".bmp");
-            openPicker.FileTypeFilter.Add(".txt");
             string MessageDecoder;
 
             StorageFile file = await openPicker.PickSingleFileAsync();
