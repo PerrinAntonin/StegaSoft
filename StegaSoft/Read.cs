@@ -44,7 +44,7 @@ namespace StegaSoft
                     if (i < 1616)//à remplacer
                     {
                         MessageDecoder += Voctet;
-                        //Console.Write(Voctet); // On affiche le message caché dans l'image sur la console
+                        
 
                     }
                     Voctet = (char)0;//on réinitialise Voctet pour qu'il puisse être pret à contenir le prochain octet 
