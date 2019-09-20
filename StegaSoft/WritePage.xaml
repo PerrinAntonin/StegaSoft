@@ -70,11 +70,7 @@
                          Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
 
-                <TextBlock Text="Choose from which byte the decryption should stop." TextWrapping="Wrap"
-                           HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0"/>
-                <TextBox x:Name="ParameterMessageToFindLenght" PlaceholderText="..." BeforeTextChanging="TextBox_ParameterMessageToFindLenght"
-                         Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-
+               
                 <TextBlock Text="Hide the message by skipping n byte." TextWrapping="Wrap"
                            HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="3"/>
                 <TextBox x:Name="ParameterMessageSkippingBytes" PlaceholderText="..." BeforeTextChanging="TextBox_ParameterMessageSkippingBytes"
