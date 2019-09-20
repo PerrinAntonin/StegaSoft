@@ -27,9 +27,6 @@ namespace StegaSoft
     /// </summary>
     public sealed partial class ReadPage : Page
     {
-
-      
-
         //variable pour le decryptage
         Read imageDescript = new Read();
         string MessageDecoder;
@@ -116,7 +113,7 @@ namespace StegaSoft
 
         private async void ButtonGo_Click(object sender, RoutedEventArgs e)
         {
-            if (imageDescript.file != null)
+            if (imageDescript.file != null && ParameterMessageToFindLenght !=null  && ParameterMessageToFindStart !=null && ParameterMessageSkippingBytes != null)
             {
                 imageDescript.ClearMessage();
                 //Tomper TODO à relier à l'ui 
@@ -132,6 +129,25 @@ namespace StegaSoft
             var dataPackage = new DataPackage();
             dataPackage.SetText(Result.Text);
             Clipboard.SetContent(dataPackage);
+        }
+
+        // force number in text box
+        private void TextBox_ParameterMessageToFindLenght(TextBox sender,
+                                          TextBoxBeforeTextChangingEventArgs args)
+        {
+            args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
+        }
+
+        private void TextBox_ParameterMessageToFindStart(TextBox sender,
+                                  TextBoxBeforeTextChangingEventArgs args)
+        {
+            args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
+        }
+
+        private void TextBox_ParameterMessageSkippingBytes(TextBox sender,
+                                  TextBoxBeforeTextChangingEventArgs args)
+        {
+            args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
         }
 
 

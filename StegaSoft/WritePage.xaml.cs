@@ -118,7 +118,7 @@ namespace StegaSoft
             savePicker.SuggestedFileName = "VacationPictures";
 
 
-            if (fileEncrypted.file != null && !string.IsNullOrWhiteSpace(messageToHide.Text))
+            if (fileEncrypted.file != null && !string.IsNullOrWhiteSpace(messageToHide.Text) && ParameterMessageToFindLenght != null && ParameterMessageToFindStart != null && ParameterMessageSkippingBytes != null)
             {
 
                 fileEncrypted.MessageToHide = messageToHide.Text;
@@ -149,6 +149,25 @@ namespace StegaSoft
 
             }
 
+        }
+
+        // force number in text box
+        private void TextBox_ParameterMessageToFindLenght(TextBox sender,
+                                          TextBoxBeforeTextChangingEventArgs args)
+        {
+            args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
+        }
+
+        private void TextBox_ParameterMessageToFindStart(TextBox sender,
+                                  TextBoxBeforeTextChangingEventArgs args)
+        {
+            args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
+        }
+
+        private void TextBox_ParameterMessageSkippingBytes(TextBox sender,
+                                  TextBoxBeforeTextChangingEventArgs args)
+        {
+            args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
         }
 
     }

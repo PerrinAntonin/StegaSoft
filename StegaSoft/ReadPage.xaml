@@ -26,6 +26,7 @@
             </CommandBar.Content>
 
         </CommandBar>
+
         <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="60"
                Text="Unhide Your files " HorizontalAlignment="Center"   TextWrapping="Wrap" MaxLines="3" TextAlignment="Center"  LineHeight="150" />
 
@@ -44,14 +45,50 @@
 
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Parameter" Margin="10" 
                 HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <TextBox Grid.Row="0" Grid.Column="1" Margin="10" />
+
+            <Grid x:Name="ParameterLayoutGrid" Grid.Row="0" Grid.Column="1" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+
+                </Grid.RowDefinitions>
+
+                <TextBlock  Text="Choose from which byte the decryption should start." TextWrapping="Wrap"
+                            VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+                <TextBox x:Name="ParameterMessageToFindStart" PlaceholderText="..." BeforeTextChanging="TextBox_ParameterMessageToFindStart"
+                         Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+
+                <TextBlock Text="Choose from which byte the decryption should stop." TextWrapping="Wrap"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0"/>
+                <TextBox x:Name="ParameterMessageToFindLenght" PlaceholderText="..." BeforeTextChanging="TextBox_ParameterMessageToFindLenght"
+                         Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                <TextBlock Text="Hide the message by skipping n byte." TextWrapping="Wrap"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="3"/>
+                <TextBox x:Name="ParameterMessageSkippingBytes" PlaceholderText="..." BeforeTextChanging="TextBox_ParameterMessageSkippingBytes"
+                         Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+
+            </Grid>
 
             <Button x:Name="SelectImage" Tapped="SelectImage_Tapped" Content="Select Image"
                     Grid.Row="1" Grid.Column="0" Margin="10"/>
-            <Image x:Name="ImagePreview" HorizontalAlignment="Left" VerticalAlignment="Top"
-                    Grid.Row="1" Grid.Column="1" Margin="10"/>
+            <Image x:Name="ImagePreview" HorizontalAlignment="Left" VerticalAlignment="Center"
+                    Grid.Row="1" Grid.Column="1" Margin="30,0,0,0" Height="340" Width="490"/>
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Result" Margin="10" 
-                HorizontalAlignment="Left" VerticalAlignment="Center" />
+                HorizontalAlignment="Center" VerticalAlignment="Top" />
             <Grid Grid.Row="2" Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -62,8 +99,7 @@
             </Grid>
             <Button x:Name="ButtonGo" Grid.Row="2" Grid.Column="2" Content="Go!" Width="80" VerticalAlignment="Center" HorizontalAlignment="Center" Click="ButtonGo_Click"/>
         </Grid>
-        <TextBox x:Name="ParameterMessageToFindLenght" HorizontalAlignment="Left" Margin="85,400,0,0" Grid.Row="2" PlaceholderText="1000" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
     </Grid>
-    
+
 </Page>
