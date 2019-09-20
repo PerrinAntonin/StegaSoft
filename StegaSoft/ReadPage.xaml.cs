@@ -28,6 +28,8 @@ namespace StegaSoft
     public sealed partial class ReadPage : Page
     {
 
+      
+
         //variable pour le decryptage
         Read imageDescript = new Read();
         string MessageDecoder;
@@ -116,8 +118,11 @@ namespace StegaSoft
         {
             if (imageDescript.file != null)
             {
+                imageDescript.ClearMessage();
+                //Tomper TODO à relier à l'ui 
+                imageDescript.LenghtMessageToShow = Convert.ToInt32(ParameterMessageToFindLenght.Text);
                 MessageDecoder = await imageDescript.OperationRead();
-                Result.Text = MessageDecoder;
+                Result.Text=  MessageDecoder;
             }
 
         }
@@ -128,5 +133,7 @@ namespace StegaSoft
             dataPackage.SetText(Result.Text);
             Clipboard.SetContent(dataPackage);
         }
+
+
     }
 }

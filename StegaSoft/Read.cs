@@ -15,7 +15,7 @@ namespace StegaSoft
 {
     public class Read : FileDecimal
     {
-
+        public int LenghtMessageToShow { get; set; }
         private string MessageDecoder;
        
 
@@ -38,7 +38,7 @@ namespace StegaSoft
                 RangBit--;
                 if (RangBit < 0)
                 {
-                    if (i < 1616)//à remplacer
+                    if (i < LenghtMessageToShow)//à remplacer
                     {
                         MessageDecoder += Voctet;
 
@@ -48,6 +48,12 @@ namespace StegaSoft
                 }
             }
             return MessageDecoder;
+        }
+
+        public void ClearMessage()
+        {
+
+            MessageDecoder = string.Empty;
         }
     }
 }

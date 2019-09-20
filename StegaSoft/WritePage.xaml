@@ -19,15 +19,14 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="5*" />
             <RowDefinition Height="*"/>
-
         </Grid.RowDefinitions>
+        
         <CommandBar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
             <CommandBar.Content>
                 <Button x:Name="BackButton" Click="Back_Click" Style="{StaticResource NavigationBackButtonNormalStyle}" VerticalAlignment="Top"/>
             </CommandBar.Content>
-
-
         </CommandBar>
+        
         <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" FontSize="30"
                    Text="Encrypte Files" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
@@ -60,6 +59,7 @@
         
         <TextBlock Grid.Row="3" Grid.Column="1"  Margin="10" 
                 HorizontalAlignment="Left" VerticalAlignment="Center" x:Name="test" />
+        
     </Grid>
 
 </Page>

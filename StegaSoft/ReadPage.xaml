@@ -62,6 +62,7 @@
             </Grid>
             <Button x:Name="ButtonGo" Grid.Row="2" Grid.Column="2" Content="Go!" Width="80" VerticalAlignment="Center" HorizontalAlignment="Center" Click="ButtonGo_Click"/>
         </Grid>
+        <TextBox x:Name="ParameterMessageToFindLenght" HorizontalAlignment="Left" Margin="85,400,0,0" Grid.Row="2" PlaceholderText="1000" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
     </Grid>
     
