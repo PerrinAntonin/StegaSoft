@@ -41,9 +41,9 @@ namespace StegaSoft
             return fileBytes;
         }
 
-        public async void deb()
+        public async void deb(string test)//debug function, print the param 
         {
-            var dialog = new MessageDialog("test");
+            var dialog = new MessageDialog(test);
             await dialog.ShowAsync();
         }
     }

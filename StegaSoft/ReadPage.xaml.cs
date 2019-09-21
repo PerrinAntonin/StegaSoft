@@ -108,8 +108,16 @@ namespace StegaSoft
             if (imageDescript.file != null && ParameterMessageToFindLenght !=null  && ParameterMessageToFindStart !=null && ParameterMessageSkippingBytes != null)
             {
                 imageDescript.ClearMessage();
-                //Tomper TODO à relier à l'ui 
-                imageDescript.LenghtMessageToShow = Convert.ToInt32(ParameterMessageToFindLenght.Text);
+                
+                if (ParameterMessageToFindLenght.Text.Length==0)//verify if there is an input
+                {
+                    imageDescript.deb("You should enter a size");
+                    imageDescript.LenghtMessageToShow = 500;//placeholder input
+                }
+                else
+                {
+                    imageDescript.LenghtMessageToShow = Convert.ToInt32(ParameterMessageToFindLenght.Text);
+                }
                 MessageDecoder = await imageDescript.OperationRead();
                 Result.Text=  MessageDecoder;
             }
