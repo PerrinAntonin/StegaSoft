@@ -38,22 +38,24 @@ namespace StegaSoft
                 RangBit--;
                 if (RangBit < 0)
                 {
-                    if (i < LenghtMessageToShow)//à remplacer
+                    if (i < LenghtMessageToShow)
                     {
                         MessageDecoder += Voctet;
 
                     }
-                    Voctet = (char)0;//on réinitialise Voctet pour qu'il puisse être pret à contenir le prochain octet 
-                    RangBit = 7; //on remet RangBit à 7 pour qu'il se remette à faire des paquets de 8 bits 
+                    Voctet = (char)0; 
+                    RangBit = 7;  
                 }
             }
             return MessageDecoder;
         }
 
-        public void ClearMessage()
+        public void ClearMessage()//fuction used to clear the message 
         {
-
             MessageDecoder = string.Empty;
         }
+
+        
+
     }
 }

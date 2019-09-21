@@ -77,10 +77,6 @@ namespace StegaSoft
             }
         }
 
-        public async void deb(string test)
-        {
-            var dialog = new MessageDialog(test);
-            await dialog.ShowAsync();
-        }
+      
     }
 }
