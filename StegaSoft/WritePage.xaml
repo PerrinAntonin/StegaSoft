@@ -11,29 +11,20 @@
 
     <Grid x:Name="LayoutRoot" Background="#555555" >
         <Grid.ColumnDefinitions>
+
             <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+
             <RowDefinition Height="5*" />
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <CommandBar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-            <CommandBar.Content>
-                <Button x:Name="BackButton" Click="Back_Click" Style="{StaticResource NavigationBackButtonNormalStyle}" VerticalAlignment="Top"/>
-            </CommandBar.Content>
-        </CommandBar>
-
-        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" FontSize="30"
-                   Text="Encrypte Files" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
-        <Grid x:Name="FormLayoutGrid" Grid.Row="2" Grid.Column="0">
+        <Grid x:Name="ParamLayoutGrid" Grid.Row="0" Grid.Column="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="6*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -41,11 +32,11 @@
                 <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Message to hide:" Margin="10" 
-                HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    HorizontalAlignment="Center" VerticalAlignment="Center" />
             <TextBox x:Name="messageToHide" Grid.Row="0" Grid.Column="1" Margin="10" Text="Choose a message to hide..." TextWrapping="Wrap" />
 
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Parameter" Margin="10" 
-                HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    HorizontalAlignment="Center" VerticalAlignment="Center" />
             <Grid x:Name="ParameterLayoutGrid" Grid.Row="1" Grid.Column="1" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -64,32 +55,33 @@
 
                 </Grid.RowDefinitions>
 
-                <TextBlock  Text="Choose from which byte the decryption should start." TextWrapping="Wrap"
+                    <TextBlock  Text="Choose from which byte the decryption should start." TextWrapping="Wrap"
                             VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
-                <TextBox x:Name="ParameterMessageToFindStart" PlaceholderText="..." BeforeTextChanging="TextBox_ParameterMessageToFindStart"
-                         Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="ParameterMessageToFindStart" PlaceholderText="..." BeforeTextChanging="TextBox_ParameterMessageToFindStart"
+                        Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
 
-               
-                <TextBlock Text="Hide the message by skipping n byte." TextWrapping="Wrap"
-                           HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="3"/>
-                <TextBox x:Name="ParameterMessageSkippingBytes" PlaceholderText="..." BeforeTextChanging="TextBox_ParameterMessageSkippingBytes"
-                         Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-            </Grid>
+                    <TextBlock Text="Hide the message by skipping n byte." TextWrapping="Wrap"
+                            HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0"/>
+                
+                    <TextBox x:Name="ParameterMessageSkippingBytes" PlaceholderText="..." 
+                             BeforeTextChanging="TextBox_ParameterMessageSkippingBytes"
+                            Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                </Grid>
 
             <Button x:Name="SelectImage" Tapped="SelectImage_Tapped" Content="Select Image"
-                    Grid.Row="2" Grid.Column="0" Margin="10"/>
+                Grid.Row="2" Grid.Column="0" Margin="10"/>
             <Image x:Name="ImagePreview" HorizontalAlignment="Left" VerticalAlignment="Center"
-                    Grid.Row="2" Grid.Column="1" Margin="30,0,0,0" Height="281" Width="303"/>
+                Grid.Row="2" Grid.Column="1" Margin="30,0,0,0" Height="281" Width="303"/>
 
 
         </Grid>
-        <Button Grid.Row="3" Grid.Column="1" Content="Go!" HorizontalAlignment="Center" Width="80" Click="ButtonGo_Click"  />
+
+        <Button Grid.Row="3" Grid.Column="2" Content="Go!" HorizontalAlignment="Center" Width="80" Click="ButtonGo_Click"  />
 
         <TextBlock Grid.Row="3" Grid.Column="1"  Margin="10" 
-                HorizontalAlignment="Left" VerticalAlignment="Center" x:Name="test" />
-
-    </Grid>
-
+                    HorizontalAlignment="Left" VerticalAlignment="Center" x:Name="test" />
+     </Grid>
 </Page>

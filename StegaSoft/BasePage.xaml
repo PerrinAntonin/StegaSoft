@@ -1,0 +1,35 @@
+﻿<Page
+    x:Class="StegaSoft.BasePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:StegaSoft"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <NavigationView x:Name="NavView"
+                        PaneDisplayMode="LeftCompact"
+                        IsSettingsVisible="True"
+                        IsBackEnabled="true" 
+                        ItemInvoked="NavView_ItemInvoked"
+                        Loaded="NavView_Loaded"
+                        BackRequested="NavView_BackRequested">
+            <!--<NavigationView.Header>
+                <TextBlock  Text="Encrypte Files" TextWrapping="Wrap" VerticalAlignment="Center" 
+                            HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+            </NavigationView.Header>-->
+            <NavigationView.MenuItems>
+                <NavigationViewItem Icon="Home" Content="Home" Tag="home" />
+                <NavigationViewItem Icon="Edit" Content="Hide your file" Tag="edit" />
+                <NavigationViewItem Icon="Read" Content="Read your file" Tag="read" />
+            </NavigationView.MenuItems>
+
+
+            <Frame x:Name="ContentFrame"/>
+
+
+        </NavigationView>
+    </Grid>
+</Page>

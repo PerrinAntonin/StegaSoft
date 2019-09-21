@@ -20,12 +20,6 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <CommandBar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-            <CommandBar.Content>
-                <Button x:Name="BackButton" Click="Back_Click" Style="{StaticResource NavigationBackButtonNormalStyle}" VerticalAlignment="Top"/>
-            </CommandBar.Content>
-
-        </CommandBar>
 
         <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="60"
                Text="Unhide Your files " HorizontalAlignment="Center"   TextWrapping="Wrap" MaxLines="3" TextAlignment="Center"  LineHeight="150" />

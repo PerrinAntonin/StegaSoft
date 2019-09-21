@@ -75,13 +75,10 @@ namespace StegaSoft
                 fileEncrypted.file = file;
             }
         }
-    
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            BackButton.IsEnabled = this.Frame.CanGoBack;
-        }
 
-        private void Back_Click(object sender, RoutedEventArgs e)
+
+        private void NavView_BackRequested(NavigationView sender,
+                                           NavigationViewBackRequestedEventArgs args)
         {
             On_BackRequested();
         }
