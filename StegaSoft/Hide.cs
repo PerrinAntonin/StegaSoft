@@ -23,6 +23,11 @@ namespace StegaSoft
         private string str_MsgBinary;
         private byte[] MessageByte;
 
+        public int StartAtPosition { set; get; }
+
+
+
+
         public void MessageToAscii()//convert the message in binary
         {
             
@@ -57,7 +62,7 @@ namespace StegaSoft
 
            int CompteurMessageIndex=0;
 
-           for (int i = HeaderFilePosition ; i < endMessagePosition; ++i)//will change the byte of the original file and hide new byte that contain the message
+           for (int i = HeaderFilePosition+StartAtPosition ; i < endMessagePosition; ++i)//will change the byte of the original file and hide new byte that contain the message
            {
                 if(FinalsFiles[i]% 2==0 )
                 {
