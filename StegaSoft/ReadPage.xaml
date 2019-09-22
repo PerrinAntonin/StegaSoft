@@ -65,13 +65,13 @@
 
                 </Grid.RowDefinitions>
 
-                <TextBlock  Text="Choose from which byte the decryption should start." TextWrapping="Wrap"
+                <TextBlock  Text="Enter the start position." TextWrapping="Wrap"
                             VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
                 <TextBox x:Name="ParameterMessageToFindStart" PlaceholderText="..." BeforeTextChanging="TextBox_ParameterMessageToFindStart"
                          Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
 
-                <TextBlock Text="Choose from which byte the decryption should stop." TextWrapping="Wrap"
+                <TextBlock Text="Enter the size of the message" TextWrapping="Wrap"
                            HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0"/>
                 <TextBox x:Name="ParameterMessageToFindLenght" PlaceholderText="..." BeforeTextChanging="TextBox_ParameterMessageToFindLenght"
                          Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
