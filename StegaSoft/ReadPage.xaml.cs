@@ -87,7 +87,14 @@ namespace StegaSoft
                 {
                     imageDescript.LenghtMessageToShow = Convert.ToInt32(ParameterMessageToFindLenght.Text);
                 }
-                imageDescript.StartAtPosition = Int32.Parse(ParameterMessageToFindStart.Text);
+                if (ParameterMessageToFindStart.Text.Length != 0)
+                {
+                    imageDescript.StartAtPosition = Int32.Parse(ParameterMessageToFindStart.Text);
+                }
+                else
+                {
+                    imageDescript.StartAtPosition = 0;
+                }
                 MessageDecoder = await imageDescript.OperationRead();
                 Result.Text=  MessageDecoder;
             }

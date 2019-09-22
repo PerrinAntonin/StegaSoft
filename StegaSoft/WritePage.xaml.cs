@@ -81,7 +81,14 @@ namespace StegaSoft
             {
 
                 fileEncrypted.MessageToHide = messageToHide.Text;
-                fileEncrypted.StartAtPosition = Int32.Parse(ParameterMessageToFindStart.Text);
+                if (ParameterMessageToFindStart.Text.Length != 0)
+                {
+                    fileEncrypted.StartAtPosition = Int32.Parse(ParameterMessageToFindStart.Text);
+                }
+                else
+                {
+                    fileEncrypted.StartAtPosition = 0;
+                }
                 fileEncrypted.MessageToAscii();
                 Windows.Storage.StorageFile file = await savePicker.PickSaveFileAsync();
                 if (file != null)
