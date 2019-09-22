@@ -38,18 +38,7 @@ namespace StegaSoft
         public WritePage()
         {
             this.InitializeComponent();
-            KeyboardAccelerator GoBack = new KeyboardAccelerator();
-            GoBack.Key = VirtualKey.GoBack;
-            GoBack.Invoked += BackInvoked;
-            KeyboardAccelerator AltLeft = new KeyboardAccelerator();
-            AltLeft.Key = VirtualKey.Left;
-            AltLeft.Invoked += BackInvoked;
-            this.KeyboardAccelerators.Add(GoBack);
-            this.KeyboardAccelerators.Add(AltLeft);
-            // ALT routes here
-            AltLeft.Modifiers = VirtualKeyModifiers.Menu;
-
-
+            
         }
     
         private async void SelectImage_Tapped(object sender, TappedRoutedEventArgs e)
@@ -75,31 +64,6 @@ namespace StegaSoft
                 fileEncrypted.file = file;
             }
         }
-
-
-        private void NavView_BackRequested(NavigationView sender,
-                                           NavigationViewBackRequestedEventArgs args)
-        {
-            On_BackRequested();
-        }
-
-        // Handles system-level BackRequested events and page-level back button Click events
-        private bool On_BackRequested()
-        {
-            if (this.Frame.CanGoBack)
-            {
-                this.Frame.GoBack();
-                return true;
-            }
-            return false;
-        }
-
-        private void BackInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
-        {
-            On_BackRequested();
-            args.Handled = true;
-        }
-    
 
         private async void ButtonGo_Click(object sender, RoutedEventArgs e)
         {
