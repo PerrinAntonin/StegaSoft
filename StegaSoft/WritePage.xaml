@@ -7,21 +7,29 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <Style x:Key="TitleTextBlockStyle" TargetType="TextBlock" 
+                     BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="FontWeight" Value="SemiLight"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="OpticalMarginAlignment" Value="TrimSideBearings"/>
+        </Style>
+    </Page.Resources>
 
-
-    <Grid x:Name="LayoutRoot" Background="#555555" >
+    <Grid>
         <Grid.ColumnDefinitions>
 
             <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="5*" />
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
-        <Grid x:Name="ParamLayoutGrid" Grid.Row="0" Grid.Column="0">
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="60"
+               Text="Hide your files " Style="{StaticResource TitleTextBlockStyle}"/>
+        <Grid x:Name="ParamLayoutGrid" Grid.Row="1" Grid.Column="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="6*"/>
@@ -79,7 +87,9 @@
 
         </Grid>
 
-        <Button Grid.Row="3" Grid.Column="2" Content="Go!" HorizontalAlignment="Center" Width="80" Click="ButtonGo_Click"  />
+        <Button Grid.Row="3" Grid.Column="2" Content="Go!" HorizontalAlignment="Center"
+                Width="80" Click="ButtonGo_Click"
+                Background="{StaticResource SystemAccentColor}"/>
 
         <TextBlock Grid.Row="3" Grid.Column="1"  Margin="10" 
                     HorizontalAlignment="Left" VerticalAlignment="Center" x:Name="test" />

@@ -8,24 +8,36 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <SolidColorBrush x:Key="myFavoriteColor" Color="green"/>
+        <Style x:Key="TitleTextBlockStyle" TargetType="TextBlock" 
+                     BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="FontWeight" Value="SemiLight"/>
+            <Setter Property="FontSize" Value="60"/>
+            <Setter Property="OpticalMarginAlignment" Value="TrimSideBearings"/>
+        </Style>
+    </Page.Resources>
 
-
-    <Grid Background="#555555" >
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="3*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="60"
-               Text="Hide and Unhide Your files easily thanks the steganographie." HorizontalAlignment="Center"  Width="1500" TextWrapping="Wrap" MaxLines="3" TextAlignment="Center" Margin="0,101,0,0" LineHeight="150" />
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+               Text="Hide and Unhide Your files easily thanks the steganographie." HorizontalAlignment="Center"  Width="1500" TextWrapping="Wrap" MaxLines="3" TextAlignment="Center" Margin="0,101,0,0" Style="{StaticResource TitleTextBlockStyle}"/>
 
-        <Button Grid.Row="1" Grid.Column="0" Content="Click to go to ButtonRead" Click="ButtonRead"  VerticalAlignment="Center" HorizontalAlignment="Center" />
-        <Button Grid.Row="1" Grid.Column="1" Content="Click to go to ButtonWrite"  Click="ButtonWrite" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <Button Grid.Row="1" Grid.Column="0" Content="Click to go to ButtonRead" 
+                Click="ButtonRead"  VerticalAlignment="Center" HorizontalAlignment="Center"
+                Style="{ThemeResource AccentButtonStyle}" Foreground="{ThemeResource AppBarBackgroundThemeBrush}"/>
+        
+        <Button Grid.Row="1" Grid.Column="1" Content="Click to go to ButtonWrite" 
+                Click="ButtonWrite" VerticalAlignment="Center"
+                HorizontalAlignment="Center" Background="{StaticResource SystemAccentColor}"/>
 
     </Grid>
 </Page>

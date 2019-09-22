@@ -7,24 +7,31 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <Style x:Key="TitleTextBlockStyle" TargetType="TextBlock" 
+                     BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="FontWeight" Value="SemiLight"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="OpticalMarginAlignment" Value="TrimSideBearings"/>
+        </Style>
+    </Page.Resources>
 
-
-    <Grid x:Name="LayoutRoot" Background="#555555"  >
+    <Grid Padding="20,0,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
 
-        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="60"
-               Text="Unhide Your files " HorizontalAlignment="Center"   TextWrapping="Wrap" MaxLines="3" TextAlignment="Center"  LineHeight="150" />
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="60"
+               Text="Unhide Your files " Style="{StaticResource TitleTextBlockStyle}"/>
 
-        <Grid x:Name="FormLayoutGrid" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0">
+        <Grid x:Name="FormLayoutGrid" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="3*"/>
@@ -91,7 +98,9 @@
                 <TextBlock x:Name="Result" Grid.Row="0" Text="..." TextWrapping="Wrap" Margin="10" />
                 <Button x:Name="CopyResult" Content="Copy" Grid.Row="1" Click="CopyResult_Click"  />
             </Grid>
-            <Button x:Name="ButtonGo" Grid.Row="2" Grid.Column="2" Content="Go!" Width="80" VerticalAlignment="Center" HorizontalAlignment="Center" Click="ButtonGo_Click"/>
+            <Button x:Name="ButtonGo" Grid.Row="2" Grid.Column="2" Content="Go!" Width="80"
+                    VerticalAlignment="Center" HorizontalAlignment="Center" Click="ButtonGo_Click"
+                    Background="{StaticResource SystemAccentColor}"/>
         </Grid>
 
     </Grid>

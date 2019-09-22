@@ -8,14 +8,18 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+
+    
     <Grid>
+            
         <NavigationView x:Name="NavView"
                         PaneDisplayMode="LeftCompact"
                         IsSettingsVisible="True"
                         IsBackEnabled="true" 
                         ItemInvoked="NavView_ItemInvoked"
                         Loaded="NavView_Loaded"
-                        BackRequested="NavView_BackRequested">
+                        BackRequested="NavView_BackRequested"
+                        ExpandedModeThresholdWidth="500">
             <!--<NavigationView.Header>
                 <TextBlock  Text="Encrypte Files" TextWrapping="Wrap" VerticalAlignment="Center" 
                             HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
