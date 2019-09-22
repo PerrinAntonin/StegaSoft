@@ -77,7 +77,7 @@ namespace StegaSoft
             if (imageDescript.file != null && !string.IsNullOrWhiteSpace(ParameterMessageToFindLenght.Text)  && !string.IsNullOrWhiteSpace(ParameterMessageToFindStart.Text) && !string.IsNullOrWhiteSpace(ParameterMessageSkippingBytes.Text))
             {
                 imageDescript.ClearMessage();
-                
+                imageDescript.NBytesOffset = Convert.ToInt32(ParameterMessageSkippingBytes.Text);
                 if (ParameterMessageToFindLenght.Text.Length==0)//verify if there is an input
                 {
                     imageDescript.deb("You should enter a size");

@@ -24,6 +24,7 @@ namespace StegaSoft
         private byte[] MessageByte;
 
         public int StartAtPosition { set; get; }
+        public int NBytesOffset { set; get; }
 
 
 
@@ -45,7 +46,7 @@ namespace StegaSoft
         public async void FileToBinary()//convert the file (image) in binary 
         {
             HeaderFilePosition = 154;
-            endMessagePosition = HeaderFilePosition + MessageSize;
+            endMessagePosition = HeaderFilePosition + (MessageSize* NBytesOffset) + StartAtPosition;
 
             byte[] File = await GetBytes(file);
             int byteLength = System.Buffer.ByteLength(File);
@@ -64,24 +65,25 @@ namespace StegaSoft
 
            for (int i = HeaderFilePosition+StartAtPosition ; i < endMessagePosition; ++i)//will change the byte of the original file and hide new byte that contain the message
            {
-                if(FinalsFiles[i]% 2==0 )
+                if(i% NBytesOffset == 0)
                 {
-                    if(str_MsgBinary[CompteurMessageIndex].ToString() == "1")
+                    if(FinalsFiles[i]% 2==0 )
                     {
-                        ++FinalsFiles[i];
-                    } 
-                }
-                else
-                {
-                    if (str_MsgBinary[CompteurMessageIndex].ToString() == "0")
-                    {
-                        --FinalsFiles[i];
+                        if(str_MsgBinary[CompteurMessageIndex].ToString() == "1")
+                        {
+                            ++FinalsFiles[i];
+                        } 
                     }
+                    else
+                    {
+                        if (str_MsgBinary[CompteurMessageIndex].ToString() == "0")
+                        {
+                            --FinalsFiles[i];
+                        }
+                    }
+                    ++CompteurMessageIndex;
                 }
-                ++CompteurMessageIndex;
             }
         }
-
-      
     }
 }

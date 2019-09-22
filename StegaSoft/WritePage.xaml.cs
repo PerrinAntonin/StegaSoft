@@ -81,6 +81,7 @@ namespace StegaSoft
             {
 
                 fileEncrypted.MessageToHide = messageToHide.Text;
+                fileEncrypted.NBytesOffset = Int32.Parse(ParameterMessageSkippingBytes.Text);
                 if (ParameterMessageToFindStart.Text.Length != 0)
                 {
                     fileEncrypted.StartAtPosition = Int32.Parse(ParameterMessageToFindStart.Text);

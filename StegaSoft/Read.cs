@@ -19,7 +19,8 @@ namespace StegaSoft
 
         public int LenghtMessageToShow { get; set; }
         private string MessageDecoder;
-       
+
+        public int NBytesOffset { set; get; }
 
         public async Task<string>  OperationRead()
         {
@@ -35,19 +36,24 @@ namespace StegaSoft
             int i = StartAtPosition;
             while (i != TabDecs.Length)
             {
-                Voctet += (char)(Math.Abs(TabDecs[i] % 2) * Math.Pow(2, RangBit));
-                i++;
-                RangBit--;
-                if (RangBit < 0)
-                {
-                    if (i < LenghtMessageToShow)
-                    {
-                        MessageDecoder += Voctet;
 
+                    Voctet += (char)(Math.Abs(TabDecs[i] % 2) * Math.Pow(2, RangBit));
+                    i++;
+                if (i % NBytesOffset == 0)
+                {
+                    RangBit--;
+                    if (RangBit < 0)
+                    {
+                        if (i < LenghtMessageToShow)
+                        {
+                            MessageDecoder += Voctet;
+
+                        }
+                        Voctet = (char)0;
+                        RangBit = 7;
                     }
-                    Voctet = (char)0; 
-                    RangBit = 7;  
                 }
+               
             }
             return MessageDecoder;
         }
