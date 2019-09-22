@@ -65,7 +65,7 @@ namespace StegaSoft
 
            for (int i = HeaderFilePosition+StartAtPosition ; i < endMessagePosition; ++i)//will change the byte of the original file and hide new byte that contain the message
            {
-                if(i% NBytesOffset == 0)
+                if((i - HeaderFilePosition) % NBytesOffset == 0)
                 {
                     if(FinalsFiles[i]% 2==0 )
                     {

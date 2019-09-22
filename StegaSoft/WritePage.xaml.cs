@@ -31,6 +31,9 @@ namespace StegaSoft
     {
         Hide fileEncrypted = new Hide();
 
+        private StorageFile fileToHide;
+
+        private bool MessageToHideBool = true;
         public Windows.Storage.Streams.UnicodeEncoding UnicodeEncoding { get; private set; }
         public Windows.Storage.Streams.UnicodeEncoding Utf16LE { get; private set; }
         public Windows.Storage.Streams.UnicodeEncoding Utf32 { get; private set; }
@@ -64,6 +67,25 @@ namespace StegaSoft
                 fileEncrypted.file = file;
             }
         }
+        private async void SelectFiletoHide_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            FileOpenPicker openPicker = new FileOpenPicker();
+            openPicker.ViewMode = PickerViewMode.Thumbnail;
+            openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+
+            fileToHide = await openPicker.PickSingleFileAsync();
+
+            if (fileToHide != null)
+            {
+
+                var stream = await fileToHide.OpenAsync(Windows.Storage.FileAccessMode.Read);
+                var imageForDisplay = new BitmapImage();
+                imageForDisplay.SetSource(stream);
+                ImagePreview.Source = imageForDisplay;
+                ImagePreview.Height = 150;
+
+            }
+        }
 
         private async void ButtonGo_Click(object sender, RoutedEventArgs e)
         {
@@ -78,9 +100,7 @@ namespace StegaSoft
 
 
             if (fileEncrypted.file != null && !string.IsNullOrWhiteSpace(messageToHide.Text) && !string.IsNullOrWhiteSpace(ParameterMessageToFindStart.Text) && !string.IsNullOrWhiteSpace(ParameterMessageSkippingBytes.Text))
-            {
-
-                fileEncrypted.MessageToHide = messageToHide.Text;
+            {                
                 fileEncrypted.NBytesOffset = Int32.Parse(ParameterMessageSkippingBytes.Text);
                 if (ParameterMessageToFindStart.Text.Length != 0)
                 {
@@ -92,6 +112,19 @@ namespace StegaSoft
                 }
                 fileEncrypted.MessageToAscii();
                 Windows.Storage.StorageFile file = await savePicker.PickSaveFileAsync();
+
+                if (MessageToHideBool)
+                {
+                    fileEncrypted.MessageToHide = messageToHide.Text;
+                }
+                else
+                {
+                    IBuffer bufferToHide = await FileIO.ReadBufferAsync(fileToHide);
+
+                    byte[] fileToHideBytes = bufferToHide.ToArray();
+                    fileEncrypted.MessageToHide = fileToHideBytes.ToString();
+                }
+
                 if (file != null)
                 {
                    
@@ -133,6 +166,23 @@ namespace StegaSoft
             args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
         }
 
+        private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            ToggleSwitch toggleSwitch = sender as ToggleSwitch;
+            if (toggleSwitch != null)
+            {
+                if (toggleSwitch.IsOn == true)
+                {
+                    //truc1.IsActive = true;
+                    MessageToHideBool = false;
+                }
+                else
+                {
+                    //truc2.IsActive = false;
+                    MessageToHideBool = true;
+                }
+            }
+        }
     }
 }
 

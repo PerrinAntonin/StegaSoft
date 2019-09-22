@@ -39,12 +39,41 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
+
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Message to hide:" Margin="10" 
                     HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <TextBox x:Name="messageToHide" Grid.Row="0" Grid.Column="1" Margin="10" Text="Choose a message to hide..." TextWrapping="Wrap" />
+            <StackPanel Orientation="Horizontal">
+                <ToggleSwitch Header="Toggle Switch Example" 
+                    OffContent="text" OnContent="File" 
+                    Toggled="ToggleSwitch_Toggled" Height="171"/>
+                
+            </StackPanel>
+
+            <SplitView IsPaneOpen="True" Grid.Row="0" Grid.Column="1"
+           DisplayMode="Inline"
+           OpenPaneLength="296">
+                <SplitView.Pane>
+                    <TextBox x:Name="messageToHide" Grid.Row="0" Grid.Column="1" Margin="10"
+                     Text="Choose a message to hide..." TextWrapping="Wrap" />
+                </SplitView.Pane>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Or" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+                    <Button x:Name="SelectFileToHide" Tapped="SelectFiletoHide_Tapped" Content="Select file to hide"
+                        Grid.Row="0" Grid.Column="1" Margin="10" FontSize="24"/>
+                </Grid>
+            </SplitView>
+
 
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Parameter" Margin="10" 
                     HorizontalAlignment="Center" VerticalAlignment="Center" />
+
             <Grid x:Name="ParameterLayoutGrid" Grid.Row="1" Grid.Column="1" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -63,21 +92,21 @@
 
                 </Grid.RowDefinitions>
 
-                    <TextBlock  Text="Enter the start position" TextWrapping="Wrap"
+                <TextBlock  Text="Enter the start position" TextWrapping="Wrap"
                             VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
-                    <TextBox x:Name="ParameterMessageToFindStart" PlaceholderText="..." BeforeTextChanging="TextBox_ParameterMessageToFindStart"
+                <TextBox x:Name="ParameterMessageToFindStart" PlaceholderText="..." BeforeTextChanging="TextBox_ParameterMessageToFindStart"
                         Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
 
 
-                    <TextBlock Text="Hide the message by skipping n byte." TextWrapping="Wrap"
+                <TextBlock Text="Hide the message by skipping n byte." TextWrapping="Wrap"
                             HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0"/>
-                
-                    <TextBox x:Name="ParameterMessageSkippingBytes" PlaceholderText="..." 
+
+                <TextBox x:Name="ParameterMessageSkippingBytes" PlaceholderText="..." 
                              BeforeTextChanging="TextBox_ParameterMessageSkippingBytes"
                             Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-                </Grid>
+            </Grid>
 
             <Button x:Name="SelectImage" Tapped="SelectImage_Tapped" Content="Select Image"
                 Grid.Row="2" Grid.Column="0" Margin="10"/>
@@ -93,5 +122,5 @@
 
         <TextBlock Grid.Row="3" Grid.Column="1"  Margin="10" 
                     HorizontalAlignment="Left" VerticalAlignment="Center" x:Name="test" />
-     </Grid>
+    </Grid>
 </Page>
