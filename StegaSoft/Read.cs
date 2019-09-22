@@ -33,14 +33,14 @@ namespace StegaSoft
         {
             int RangBit = 7;
             char Voctet = (char)0;
-            int i = StartAtPosition;
-            while (i != TabDecs.Length)
+            
+            for (int i = StartAtPosition; i != TabDecs.Length; i++)
             {
-
-                    Voctet += (char)(Math.Abs(TabDecs[i] % 2) * Math.Pow(2, RangBit));
-                    i++;
                 if (i % NBytesOffset == 0)
                 {
+                    Voctet += (char)(Math.Abs(TabDecs[i] % 2) * Math.Pow(2, RangBit));
+                    
+
                     RangBit--;
                     if (RangBit < 0)
                     {
