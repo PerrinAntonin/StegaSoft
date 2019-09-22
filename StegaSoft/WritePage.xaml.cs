@@ -67,8 +67,6 @@ namespace StegaSoft
 
         private async void ButtonGo_Click(object sender, RoutedEventArgs e)
         {
-
-
             //Sytem de Sauvegarde
             var savePicker = new Windows.Storage.Pickers.FileSavePicker();
             savePicker.SuggestedStartLocation =
@@ -83,6 +81,7 @@ namespace StegaSoft
             {
 
                 fileEncrypted.MessageToHide = messageToHide.Text;
+                fileEncrypted.StartAtPosition = Int32.Parse(ParameterMessageSkippingBytes.Text);
                 fileEncrypted.MessageToAscii();
                 Windows.Storage.StorageFile file = await savePicker.PickSaveFileAsync();
                 if (file != null)
