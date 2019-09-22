@@ -19,6 +19,7 @@ using Windows.Storage;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.System;
 using Windows.ApplicationModel.DataTransfer;
+using System.Text;
 
 namespace StegaSoft
 {
@@ -30,6 +31,7 @@ namespace StegaSoft
         //variable pour le decryptage
         Read imageDescript = new Read();
         string MessageDecoder;
+        public bool GetFileBool =false;
 
         public ReadPage()
         {
@@ -96,7 +98,46 @@ namespace StegaSoft
                     imageDescript.StartAtPosition = 0;
                 }
                 MessageDecoder = await imageDescript.OperationRead();
-                Result.Text=  MessageDecoder;
+                if (GetFileBool==true)
+                {
+                    //Sytem de Sauvegarde
+                    var savePicker = new Windows.Storage.Pickers.FileSavePicker();
+                    savePicker.SuggestedStartLocation =
+                        Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
+                    // Dropdown of file types the user can save the file as
+                    savePicker.FileTypeChoices.Add("Bitmap", new List<string>() { ".bmp" });
+                    // Default file name if the user does not type one in or select a file to replace
+                    savePicker.SuggestedFileName = "Newpicturefromanother";
+
+
+                    Windows.Storage.StorageFile file = await savePicker.PickSaveFileAsync();
+
+                    if (file != null)
+                    {
+
+                        await FileIO.WriteBytesAsync(file, Encoding.ASCII.GetBytes(MessageDecoder));
+
+                        Windows.Storage.Provider.FileUpdateStatus status =
+                            await Windows.Storage.CachedFileManager.CompleteUpdatesAsync(file);
+                        if (status == Windows.Storage.Provider.FileUpdateStatus.Complete)
+                        {
+                            this.ReponseForSaveFile.Text = "File " + file.Name + " was saved.";
+                        }
+                        else
+                        {
+                            this.ReponseForSaveFile.Text = "File " + file.Name + " couldn't be saved.";
+                        }
+                    }
+                    else
+                    {
+                        this.ReponseForSaveFile.Text = "Operation cancelled.";
+                    }
+                }
+                else
+                {
+                    Result.Text = MessageDecoder;
+                }
+                
             }
 
         }
@@ -125,6 +166,24 @@ namespace StegaSoft
                                   TextBoxBeforeTextChangingEventArgs args)
         {
             args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
+        }
+
+        private void ToggleSwitchGetFile_Toggled(object sender, RoutedEventArgs e)
+        {
+            ToggleSwitch toggleSwitch = sender as ToggleSwitch;
+            if (toggleSwitch != null)
+            {
+                if (toggleSwitch.IsOn == true)
+                {
+                    //truc1.IsActive = true;
+                    GetFileBool = true;
+                }
+                else
+                {
+                    //truc2.IsActive = false;
+                    GetFileBool = false;
+                }
+            }
         }
 
 

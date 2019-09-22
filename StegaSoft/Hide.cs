@@ -21,7 +21,7 @@ namespace StegaSoft
 
         private int MessageSize;
         private string str_MsgBinary;
-        private byte[] MessageByte;
+        public byte[] MessageByte;
 
         public int StartAtPosition { set; get; }
         public int NBytesOffset { set; get; }
@@ -29,10 +29,13 @@ namespace StegaSoft
 
 
 
-        public void MessageToAscii()//convert the message in binary
+        public void MessageToAscii(bool MessageToHideBool)//convert the message in binary
         {
-            
-            MessageByte = Encoding.ASCII.GetBytes(MessageToHide);
+            if (MessageToHideBool == true)
+            {
+                MessageByte = GetBytes(MessageToHide);
+            }
+
        
             for (int i = 0; i < MessageByte.Length; i++)
             {
@@ -86,5 +89,13 @@ namespace StegaSoft
                 }
             }
         }
+
+        static byte[] GetBytes(string str)
+        {
+            byte[] bytes = new byte[str.Length * sizeof(char)];
+            System.Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
+            return bytes;
+        }
+
     }
 }

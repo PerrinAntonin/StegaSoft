@@ -33,7 +33,7 @@ namespace StegaSoft
 
         private StorageFile fileToHide;
 
-        private bool MessageToHideBool = true;
+        public bool MessageToHideBool = true;
         public Windows.Storage.Streams.UnicodeEncoding UnicodeEncoding { get; private set; }
         public Windows.Storage.Streams.UnicodeEncoding Utf16LE { get; private set; }
         public Windows.Storage.Streams.UnicodeEncoding Utf32 { get; private set; }
@@ -72,17 +72,19 @@ namespace StegaSoft
             FileOpenPicker openPicker = new FileOpenPicker();
             openPicker.ViewMode = PickerViewMode.Thumbnail;
             openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            openPicker.FileTypeFilter.Add(".bmp");
 
             fileToHide = await openPicker.PickSingleFileAsync();
 
             if (fileToHide != null)
             {
-
+                /*
                 var stream = await fileToHide.OpenAsync(Windows.Storage.FileAccessMode.Read);
                 var imageForDisplay = new BitmapImage();
                 imageForDisplay.SetSource(stream);
                 ImagePreview.Source = imageForDisplay;
                 ImagePreview.Height = 150;
+                */
 
             }
         }
@@ -110,8 +112,6 @@ namespace StegaSoft
                 {
                     fileEncrypted.StartAtPosition = 0;
                 }
-                fileEncrypted.MessageToAscii();
-                Windows.Storage.StorageFile file = await savePicker.PickSaveFileAsync();
 
                 if (MessageToHideBool)
                 {
@@ -122,8 +122,13 @@ namespace StegaSoft
                     IBuffer bufferToHide = await FileIO.ReadBufferAsync(fileToHide);
 
                     byte[] fileToHideBytes = bufferToHide.ToArray();
-                    fileEncrypted.MessageToHide = fileToHideBytes.ToString();
+                    fileEncrypted.MessageByte = fileToHideBytes;
                 }
+
+                fileEncrypted.MessageToAscii(MessageToHideBool);
+                Windows.Storage.StorageFile file = await savePicker.PickSaveFileAsync();
+
+
 
                 if (file != null)
                 {
@@ -145,11 +150,7 @@ namespace StegaSoft
                 {
                     this.test.Text = "Operation cancelled.";
                 }
-
-
-
             }
-
         }
 
         // force number in text box

@@ -98,9 +98,22 @@
                 <TextBlock x:Name="Result" Grid.Row="0" Text="..." TextWrapping="Wrap" Margin="10" />
                 <Button x:Name="CopyResult" Content="Copy" Grid.Row="1" Click="CopyResult_Click"  />
             </Grid>
+
+
+            <StackPanel Orientation="Horizontal"  Grid.Row="1" Grid.Column="2">
+                <ToggleSwitch Header="Get File" 
+                    OffContent="text" OnContent="File" 
+                    Toggled="ToggleSwitchGetFile_Toggled" />
+
+            </StackPanel>
+            
             <Button x:Name="ButtonGo" Grid.Row="2" Grid.Column="2" Content="Go!" Width="80"
                     VerticalAlignment="Center" HorizontalAlignment="Center" Click="ButtonGo_Click"
                     Background="{StaticResource SystemAccentColor}"/>
+
+
+            <TextBlock Grid.Row="3" Grid.Column="2"  Margin="10" 
+                    HorizontalAlignment="Left" VerticalAlignment="Center" x:Name="ReponseForSaveFile" />
         </Grid>
 
     </Grid>
