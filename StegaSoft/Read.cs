@@ -15,6 +15,8 @@ namespace StegaSoft
 {
     public class Read : FileDecimal
     {
+        public int StartAtPosition { get; set; }=0;
+
         public int LenghtMessageToShow { get; set; }
         private string MessageDecoder;
        
@@ -30,7 +32,7 @@ namespace StegaSoft
         {
             int RangBit = 7;
             char Voctet = (char)0;
-            int i = 0;
+            int i = StartAtPosition;
             while (i != TabDecs.Length)
             {
                 Voctet += (char)(Math.Abs(TabDecs[i] % 2) * Math.Pow(2, RangBit));
