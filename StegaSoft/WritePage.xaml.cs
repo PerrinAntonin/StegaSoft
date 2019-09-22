@@ -48,7 +48,7 @@ namespace StegaSoft
             openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
 
             openPicker.FileTypeFilter.Add(".bmp");
-            string MessageDecoder;
+            
 
             StorageFile file = await openPicker.PickSingleFileAsync();
 
@@ -69,7 +69,7 @@ namespace StegaSoft
         {
             //Sytem de Sauvegarde
             var savePicker = new Windows.Storage.Pickers.FileSavePicker();
-            savePicker.SuggestedStartLocation = 
+            savePicker.SuggestedStartLocation =
                 Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
             // Dropdown of file types the user can save the file as
             savePicker.FileTypeChoices.Add("Bitmap", new List<string>() { ".bmp" });

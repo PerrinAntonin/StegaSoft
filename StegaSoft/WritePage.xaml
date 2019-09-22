@@ -63,7 +63,7 @@
 
                 </Grid.RowDefinitions>
 
-                    <TextBlock  Text="Choose from which byte the decryption should start." TextWrapping="Wrap"
+                    <TextBlock  Text="Enter the start position" TextWrapping="Wrap"
                             VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
                     <TextBox x:Name="ParameterMessageToFindStart" PlaceholderText="..." BeforeTextChanging="TextBox_ParameterMessageToFindStart"
                         Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
