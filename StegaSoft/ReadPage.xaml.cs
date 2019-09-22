@@ -74,7 +74,7 @@ namespace StegaSoft
 
         private async void ButtonGo_Click(object sender, RoutedEventArgs e)
         {
-            if (imageDescript.file != null && ParameterMessageToFindLenght !=null  && ParameterMessageToFindStart !=null && ParameterMessageSkippingBytes != null)
+            if (imageDescript.file != null && ParameterMessageToFindLenght.Text != null  && ParameterMessageToFindStart.Text != null && ParameterMessageSkippingBytes.Text != null)
             {
                 imageDescript.ClearMessage();
                 

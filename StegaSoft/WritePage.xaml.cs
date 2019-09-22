@@ -77,7 +77,7 @@ namespace StegaSoft
             savePicker.SuggestedFileName = "VacationPictures";
 
 
-            if (fileEncrypted.file != null && !string.IsNullOrWhiteSpace(messageToHide.Text) && ParameterMessageToFindStart != null && ParameterMessageSkippingBytes != null)
+            if (fileEncrypted.file != null && !string.IsNullOrWhiteSpace(messageToHide.Text) && ParameterMessageToFindStart.Text != null && ParameterMessageSkippingBytes.Text != null)
             {
 
                 fileEncrypted.MessageToHide = messageToHide.Text;
