@@ -55,6 +55,7 @@ namespace StegaSoft
             Array.Copy(File, 0, FinalsFiles,0, byteLength);
             //Add hidden part
             ComputeHide();
+            deb((MessageSize*NBytesOffset+StartAtPosition).ToString());
         }
 
         //hide the data in the file
