@@ -9,8 +9,8 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 
-    
-    <Grid>
+
+    <Grid Background="Transparent">
             
         <NavigationView x:Name="NavView"
                         PaneDisplayMode="LeftCompact"

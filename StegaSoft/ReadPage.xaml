@@ -27,7 +27,6 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="60"
                Text="Unhide Your files " Style="{StaticResource TitleTextBlockStyle}"/>
 
@@ -106,10 +105,12 @@
                     Toggled="ToggleSwitchGetFile_Toggled" />
 
             </StackPanel>
-            
+
             <Button x:Name="ButtonGo" Grid.Row="2" Grid.Column="2" Content="Go!" Width="80"
                     VerticalAlignment="Center" HorizontalAlignment="Center" Click="ButtonGo_Click"
                     Background="{StaticResource SystemAccentColor}"/>
+
+            <ProgressRing x:Name="LoadingIndicator" Grid.Row="2" Grid.Column="2" IsActive="False" Height="60" Width="60" Margin="270,0,0,0"/>
 
 
             <TextBlock Grid.Row="3" Grid.Column="2"  Margin="10" 

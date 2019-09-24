@@ -16,7 +16,7 @@
         </Style>
     </Page.Resources>
 
-    <Grid>
+    <Grid Padding="20,0,0,0">
         <Grid.ColumnDefinitions>
 
             <ColumnDefinition Width="3*" />
@@ -54,7 +54,7 @@
            OpenPaneLength="296">
                 <SplitView.Pane>
                     <TextBox x:Name="messageToHide" Grid.Row="0" Grid.Column="1" Margin="10"
-                     Text="Choose a message to hide..." TextWrapping="Wrap" />
+                             PlaceholderText="Choose a message to hide..." TextWrapping="Wrap" />
                 </SplitView.Pane>
 
                 <Grid>
@@ -94,7 +94,7 @@
 
                 <TextBlock  Text="Enter the start position" TextWrapping="Wrap"
                             VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
-                <TextBox x:Name="ParameterMessageToFindStart" PlaceholderText="..." BeforeTextChanging="TextBox_ParameterMessageToFindStart"
+                <TextBox x:Name="ParameterMessageToFindStart" PlaceholderText="0..." BeforeTextChanging="TextBox_ParameterMessageToFindStart"
                         Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
 
@@ -102,7 +102,7 @@
                 <TextBlock Text="Hide the message by skipping n byte." TextWrapping="Wrap"
                             HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0"/>
 
-                <TextBox x:Name="ParameterMessageSkippingBytes" PlaceholderText="..." 
+                <TextBox x:Name="ParameterMessageSkippingBytes" PlaceholderText="1..." 
                              BeforeTextChanging="TextBox_ParameterMessageSkippingBytes"
                             Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
@@ -119,6 +119,7 @@
         <Button Grid.Row="3" Grid.Column="2" Content="Go!" HorizontalAlignment="Center"
                 Width="80" Click="ButtonGo_Click"
                 Background="{StaticResource SystemAccentColor}"/>
+        <ProgressRing x:Name="LoadingIndicator" Grid.Row="2" Grid.Column="2" IsActive="False" Height="60" Width="60" Margin="270,0,0,0"/>
 
         <TextBlock Grid.Row="3" Grid.Column="1"  Margin="10" 
                     HorizontalAlignment="Left" VerticalAlignment="Center" x:Name="test" />

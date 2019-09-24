@@ -78,6 +78,7 @@ namespace StegaSoft
         {
             if (imageDescript.file != null && !string.IsNullOrWhiteSpace(ParameterMessageToFindLenght.Text)  && !string.IsNullOrWhiteSpace(ParameterMessageToFindStart.Text) && !string.IsNullOrWhiteSpace(ParameterMessageSkippingBytes.Text))
             {
+                LoadingIndicator.IsActive = true;
                 imageDescript.ClearMessage();
                 imageDescript.NBytesOffset = Convert.ToInt32(ParameterMessageSkippingBytes.Text);
                 if (ParameterMessageToFindLenght.Text.Length==0)//verify if there is an input
@@ -99,14 +100,14 @@ namespace StegaSoft
                 }
                 if (GetFileBool == true)
                 {
-
+                    imageDescript.LenghtFile = Int32.Parse(ParameterMessageToFindLenght.Text);
                     byte[] newFile = await imageDescript.OperationGetHiddenFile();
                     //Sytem de Sauvegarde
                     var savePicker = new Windows.Storage.Pickers.FileSavePicker();
                     savePicker.SuggestedStartLocation =
                         Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
                     // Dropdown of file types the user can save the file as
-                    savePicker.FileTypeChoices.Add("tageul", new List<string>() { ".txt" });
+                    savePicker.FileTypeChoices.Add("bitmap", new List<string>() { ".bmp" });
                     // Default file name if the user does not type one in or select a file to replace
                     savePicker.SuggestedFileName = "Newpicturefromanother";
 
@@ -141,6 +142,7 @@ namespace StegaSoft
                 }
                 
             }
+            LoadingIndicator.IsActive = false;
 
         }
 

@@ -16,6 +16,7 @@ namespace StegaSoft
     public class Read : FileDecimal
     {
         public int StartAtPosition { get; set; } = 0;
+        public int LenghtFile { get; set; } = 0;
 
         public int LenghtMessageToShow { get; set; }
         private string MessageDecoder;
@@ -71,16 +72,16 @@ namespace StegaSoft
         private byte[] GetHideFile(int[] TabDecs)
         {
             int RangBit = 7;
-            List<byte> Voctet = new List<byte>();
+            byte[] Voctet;
             string binary= string.Empty;
 
-            for (int i = StartAtPosition; i != TabDecs.Length; i++)
+            for (int i = StartAtPosition; i != LenghtFile; i++)
             {
                 if (i % NBytesOffset == 0)
                 {
-                    binary += (Math.Abs(TabDecs[i] % 2) * Math.Pow(2, RangBit)).ToString();
+                    binary += (Math.Abs(TabDecs[i] % 2)).ToString();
 
-
+                    /*
                     RangBit--;
                     if (RangBit < 0)
                     {
@@ -89,14 +90,27 @@ namespace StegaSoft
                         binary = string.Empty;
                         RangBit = 7;
                     }
+                    */
                 }
 
             }
 
+            Voctet = GetBytes(binary);
 
-            return Voctet.ToArray();
+            return Voctet;
 
 
+        }
+
+        byte[] GetBytes(string str)
+        {
+            int numOfBytes = str.Length / 8;
+            byte[] bytes = new byte[numOfBytes];
+            for (int i = 0; i < numOfBytes; ++i)
+            {
+                bytes[i] = Convert.ToByte(str.Substring(8 * i, 8), 2);
+            }
+            return bytes;
         }
     }
 }

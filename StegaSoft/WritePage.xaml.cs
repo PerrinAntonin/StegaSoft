@@ -72,12 +72,13 @@ namespace StegaSoft
             FileOpenPicker openPicker = new FileOpenPicker();
             openPicker.ViewMode = PickerViewMode.Thumbnail;
             openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-            openPicker.FileTypeFilter.Add(".txt");
+            openPicker.FileTypeFilter.Add(".bmp");
 
             fileToHide = await openPicker.PickSingleFileAsync();
 
             if (fileToHide != null)
             {
+                //PREVIEW TO PLACE
                 /*
                 var stream = await fileToHide.OpenAsync(Windows.Storage.FileAccessMode.Read);
                 var imageForDisplay = new BitmapImage();
@@ -102,7 +103,8 @@ namespace StegaSoft
 
 
             if (fileEncrypted.file != null && !string.IsNullOrWhiteSpace(messageToHide.Text) && !string.IsNullOrWhiteSpace(ParameterMessageToFindStart.Text) && !string.IsNullOrWhiteSpace(ParameterMessageSkippingBytes.Text))
-            {                
+            {
+                LoadingIndicator.IsActive = true;
                 fileEncrypted.NBytesOffset = Int32.Parse(ParameterMessageSkippingBytes.Text);
                 if (ParameterMessageToFindStart.Text.Length != 0)
                 {
@@ -151,10 +153,54 @@ namespace StegaSoft
                     this.test.Text = "Operation cancelled.";
                 }
             }
+            LoadingIndicator.IsActive = false;
         }
 
-        // force number in text box
+        // Check and set value to write
+       private bool checkIfCanWrite()
+       {
+            bool CanWrite = false;
 
+            if  ((messageToHide.Text.Length != 0 || fileToHide == null) && MessageToHideBool)
+            {
+
+            }
+
+            if (fileEncrypted.file != null && !string.IsNullOrWhiteSpace(ParameterMessageSkippingBytes.Text))
+            {
+                // loading screen
+                LoadingIndicator.IsActive = true;
+
+                if(ParameterMessageToFindStart.Text.Length != 0)
+                {
+                    //convert string to Int and set value to start
+                    fileEncrypted.StartAtPosition = Int32.Parse(ParameterMessageToFindStart.Text);
+                }
+                else
+                {
+                    //set default start if nothing have been choose
+                    fileEncrypted.StartAtPosition = 0;
+                }
+                if(ParameterMessageSkippingBytes.Text.Length != 0)
+                {
+                    //convert string to Int
+                    fileEncrypted.NBytesOffset = Int32.Parse(ParameterMessageSkippingBytes.Text);
+                }
+                else
+                {
+                    //set default if nothing have been choose
+                    fileEncrypted.NBytesOffset = 1;
+                }
+                CanWrite = true;
+            }
+            else
+            {
+                CanWrite = false;
+            }
+            return CanWrite;
+       }
+
+        // force number in text box
         private void TextBox_ParameterMessageToFindStart(TextBox sender,
                                   TextBoxBeforeTextChangingEventArgs args)
         {
