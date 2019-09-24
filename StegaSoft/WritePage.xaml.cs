@@ -72,7 +72,7 @@ namespace StegaSoft
             FileOpenPicker openPicker = new FileOpenPicker();
             openPicker.ViewMode = PickerViewMode.Thumbnail;
             openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-            openPicker.FileTypeFilter.Add(".bmp");
+            openPicker.FileTypeFilter.Add(".txt");
 
             fileToHide = await openPicker.PickSingleFileAsync();
 

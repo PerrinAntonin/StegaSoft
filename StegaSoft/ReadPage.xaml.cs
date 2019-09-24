@@ -97,15 +97,16 @@ namespace StegaSoft
                 {
                     imageDescript.StartAtPosition = 0;
                 }
-                MessageDecoder = await imageDescript.OperationRead();
-                if (GetFileBool==true)
+                if (GetFileBool == true)
                 {
+
+                    byte[] newFile = await imageDescript.OperationGetHiddenFile();
                     //Sytem de Sauvegarde
                     var savePicker = new Windows.Storage.Pickers.FileSavePicker();
                     savePicker.SuggestedStartLocation =
                         Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
                     // Dropdown of file types the user can save the file as
-                    savePicker.FileTypeChoices.Add("Bitmap", new List<string>() { ".bmp" });
+                    savePicker.FileTypeChoices.Add("tageul", new List<string>() { ".txt" });
                     // Default file name if the user does not type one in or select a file to replace
                     savePicker.SuggestedFileName = "Newpicturefromanother";
 
@@ -115,7 +116,7 @@ namespace StegaSoft
                     if (file != null)
                     {
 
-                        await FileIO.WriteBytesAsync(file, Encoding.ASCII.GetBytes(MessageDecoder));
+                        await FileIO.WriteBytesAsync(file, newFile);
 
                         Windows.Storage.Provider.FileUpdateStatus status =
                             await Windows.Storage.CachedFileManager.CompleteUpdatesAsync(file);
@@ -135,6 +136,7 @@ namespace StegaSoft
                 }
                 else
                 {
+                    MessageDecoder = await imageDescript.OperationRead();
                     Result.Text = MessageDecoder;
                 }
                 
