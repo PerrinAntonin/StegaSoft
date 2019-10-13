@@ -222,12 +222,18 @@ namespace StegaSoft.Views
                 if (toggleSwitch.IsOn == true)
                 {
                     //truc1.IsActive = true;
+
                     MessageToHideBool = false;
+                    messageToHide.IsEnabled = false;
+                    SelectFileToHide.IsEnabled = true;
                 }
                 else
                 {
                     //truc2.IsActive = false;
                     MessageToHideBool = true;
+                    messageToHide.IsEnabled = true;
+                    SelectFileToHide.IsEnabled = false;
+
                 }
             }
         }

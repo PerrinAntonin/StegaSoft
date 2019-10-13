@@ -6,6 +6,19 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="ButtonBackground" Color="{ThemeResource SystemAccentColor}"/>
+                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="{ThemeResource SystemAccentColorLight1}"/>
+                    <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="{ThemeResource SystemAccentColorDark1}"/>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    
     <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
         <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
             <Grid.ColumnDefinitions>
@@ -79,8 +92,7 @@
                 </StackPanel>
 
                 <Button x:Name="ButtonGo" Grid.Row="2" Grid.Column="2" Content="Go!" Width="80"
-                    VerticalAlignment="Center" HorizontalAlignment="Center" Click="ButtonGo_Click"
-                    Background="{StaticResource SystemAccentColor}"/>
+                    VerticalAlignment="Center" HorizontalAlignment="Center" Click="ButtonGo_Click"/>
 
                 <ProgressRing x:Name="LoadingIndicator" Grid.Row="2" Grid.Column="2" IsActive="False" Height="60" Width="60" Margin="270,0,0,0"/>
 
