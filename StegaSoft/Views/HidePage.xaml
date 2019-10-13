@@ -9,10 +9,95 @@
     <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--
-                The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.
-            -->
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="60"
+               Text="Hide your files " Style="{StaticResource TitleTextBlockStyle}"/>
+            <Grid x:Name="ParamLayoutGrid" Grid.Row="1" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="6*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Message to hide:" Margin="10" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <StackPanel Orientation="Horizontal">
+                    <ToggleSwitch Header="Toggle Switch Example" 
+                    OffContent="text" OnContent="File" 
+                    Toggled="ToggleSwitch_Toggled" Height="171"/>
+
+                </StackPanel>
+
+                <SplitView IsPaneOpen="True" Grid.Row="0" Grid.Column="1"
+                           DisplayMode="Inline"
+                           OpenPaneLength="296">        
+                    <SplitView.Pane>
+                        <TextBox x:Name="messageToHide" Grid.Row="0" Grid.Column="1" Margin="10"
+                             PlaceholderText="Choose a message to hide..." TextWrapping="Wrap" />
+                    </SplitView.Pane>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="3*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Or" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+                        <Button x:Name="SelectFileToHide" Tapped="SelectFiletoHide_Tapped" Content="Select file to hide"
+                        Grid.Row="0" Grid.Column="1" Margin="10" FontSize="24"/>
+                    </Grid>
+                </SplitView>
+
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Parameter" Margin="10" 
+                            HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                <Grid x:Name="ParameterLayoutGrid" Grid.Row="1" Grid.Column="1" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Spacing="40" HorizontalAlignment="Left">
+                        <TextBox x:Name="ParameterMessageToFindStart" Header="Enter the start position"
+                                 PlaceholderText="ex: 0..." BeforeTextChanging="TextBox_ParameterMessageToFindStart" Width="200"/>
+                        <TextBox x:Name="ParameterMessageSkippingBytes" PlaceholderText="ex: 1..." BeforeTextChanging="TextBox_ParameterMessageSkippingBytes"
+                                    Header="Hide the message by skipping n byte." Width="200"/>
+
+                    </StackPanel>
+
+
+                </Grid>
+
+                <Button x:Name="SelectImage" Tapped="SelectImage_Tapped" Content="Select Image"
+                Grid.Row="2" Grid.Column="0" Margin="10"/>
+                <Image x:Name="ImagePreview" HorizontalAlignment="Left" VerticalAlignment="Center"
+                Grid.Row="2" Grid.Column="1" Margin="30,0,0,0" Height="281" Width="303"/>
+
+
+            </Grid>
+
+            <Button Grid.Row="3" Grid.Column="2" Content="Go!" HorizontalAlignment="Center"
+                Width="80" Click="ButtonGo_Click"
+                Background="{StaticResource SystemAccentColor}"/>
+            <ProgressRing x:Name="LoadingIndicator" Grid.Row="2" Grid.Column="2" IsActive="False" Height="60" Width="60" Margin="270,0,0,0"/>
+
+            <TextBlock Grid.Row="3" Grid.Column="1"  Margin="10" 
+                    HorizontalAlignment="Left" VerticalAlignment="Center" x:Name="test" />
         </Grid>
     </Grid>
 </Page>

@@ -9,6 +9,9 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
+using Windows.UI.ViewManagement;
+using Windows.Foundation;
+
 namespace StegaSoft.Services
 {
     // For more information on understanding and extending activation flow see
@@ -52,6 +55,7 @@ namespace StegaSoft.Services
 
             if (IsInteractive(activationArgs))
             {
+                ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(500, 500));
                 // Ensure the current window is active
                 Window.Current.Activate();
 

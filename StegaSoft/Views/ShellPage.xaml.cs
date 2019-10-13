@@ -40,6 +40,7 @@ namespace StegaSoft.Views
 
         public ShellPage()
         {
+
             InitializeComponent();
             DataContext = this;
             Initialize();
