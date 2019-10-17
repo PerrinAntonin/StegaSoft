@@ -72,7 +72,8 @@ namespace StegaSoft.Views
                 var imageForDisplay = new BitmapImage();
                 imageForDisplay.SetSource(stream);
                 ImagePreview.Source = imageForDisplay;
-                ImagePreview.Height = 150;
+                ImagePreview.Height = 350;
+                ImagePreview.Width = 500;
                 //affecte l'image pour Read
                 imageDescript.file = file;
 
