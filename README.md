@@ -1,6 +1,6 @@
 [![Contributors][contributors-shield]][contributors-url]
 [![Stargazers][stars-shield]][stars-url]
-
+<p align="center"></br>:construction: In Work :construction:</p>
 
 <!-- PROJECT LOGO -->
 <br />
@@ -12,7 +12,7 @@
   <h3 align="center">StegaSoft</h3>
 
   <p align="center">
-    YOUR_SHORT_DESCRIPTION
+    A soft to hide or unhide information inside a picture ideal if you want to hide some sensible data.
         <br /><br />
   </p>
 </p>
@@ -24,9 +24,6 @@
 
 * [About the Project](#about-the-project)
   * [Built With](#built-with)
-* [Getting Started](#getting-started)
-  * [Installation](#installation)
-* [Contributing](#contributing)
 * [License](#license)
 * [Contributors](#contributors)
 
@@ -49,23 +46,6 @@ Here's a blank template to get started:
 * C#
 
 
-
-<!-- GETTING STARTED -->
-## Getting Started
-
-To get a local copy up and running follow these simple steps.
-
-### Installation
- 
-1. Clone the repo
-```sh
-git clone https:://github.com/github_username/repo.git
-```
-2. Run installer
-
-
-
-
 <!-- USAGE EXAMPLES -->
 ## Usage
 
@@ -74,13 +54,10 @@ Use this space to show useful examples of how a project can be used. Additional 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
 
-
-
 <!-- LICENSE -->
 ## License
 
 Distributed under the MIT License.
-
 
 
 <!-- CONTACT -->
