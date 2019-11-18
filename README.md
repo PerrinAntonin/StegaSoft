@@ -63,8 +63,8 @@ Distributed under the MIT License.
 <!-- CONTACT -->
 ## Contributors
 
-  - Antonin Perrin      -     [@perriguigui](https://twitter.com/perriguigui)  [![LinkedIn][linkedin-shield]][linkedin-url]<br>
-  - Nathan Rinalduzzi   -     [@Natmad1](https://twitter.com/Natmad1)  [![LinkedIn][linkedin-shield]][linkedin-url]<br>
+  - Antonin Perrin      -     [![LinkedIn][linkedin-shield]](https://www.linkedin.com/in/antonin-perrin-6b9060197/)<br>
+  - Nathan Rinalduzzi   -     [@Natmad1](https://twitter.com/Natmad1)  [![LinkedIn][linkedin-shield]](https://www.linkedin.com/in/nathan-rinalduzzi-388b52197/)<br>
 
 Project Link: [https://github.com/perriguigui/StegaSoft](https://github.com/perriguigui/StegaSoft)
 
