@@ -1,22 +1,16 @@
 [![Contributors][contributors-shield]][contributors-url]
 [![Stargazers][stars-shield]][stars-url]
-<p align="center"></br>:construction: In Work :construction:</p>
+
+<h4 align="center"></br>:construction: In Work :construction:</h4>
 
 <!-- PROJECT LOGO -->
 <br />
+<h1 align="center">StegaSoft</h1>
+<p align="center"><img src=https://github.com/perriguigui/StegaSoft/blob/master/StegaSoft/Assets/Square71x71Logo.scale-400.png></p>
 <p align="center">
-  <a href="https://github.com/perriguigui/StegaSoft">
-    <img src="https://github.com/perriguigui/StegaSoft/Assets/logo.png " alt="Logo" width="80" height="80">
-  </a>
-
-  <h3 align="center">StegaSoft</h3>
-
-  <p align="center">
     A soft to hide or unhide information inside a picture ideal if you want to hide some sensible data.
-        <br /><br />
-  </p>
+    <br /><br />
 </p>
-
 
 
 <!-- TABLE OF CONTENTS -->
