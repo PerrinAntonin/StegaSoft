@@ -1,14 +1,14 @@
 [![Contributors][contributors-shield]][contributors-url]
 [![Stargazers][stars-shield]][stars-url]
 
-<h4 align="center"></br>:construction: In Work :construction:</h4>
+<h4 align="center"></br>:construction: In Progress :construction:</h4>
 
 <!-- PROJECT LOGO -->
 <br />
 <h1 align="center">StegaSoft</h1>
 <p align="center"><img src=https://github.com/perriguigui/StegaSoft/blob/master/StegaSoft/Assets/Square71x71Logo.scale-400.png></p>
 <p align="center">
-    A soft to hide or unhide information inside a picture ideal if you want to hide some sensible data.
+    A soft to hide or unhide information inside a picture ideal if you want to hide some sensitive data.
     <br /><br />
 </p>
 
@@ -17,7 +17,9 @@
 ## Table of Contents
 
 * [About the Project](#about-the-project)
+  * [Demo](#demo)
   * [Built With](#built-with)
+  * [Usage](#usage)
 * [License](#license)
 * [Contributors](#contributors)
 
@@ -27,11 +29,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`github_username`, `repo`, `twitter_handle`, `email`
+### Demo
+![StegaSoft Demo](https://github.com/perriguigui/StegaSoft/blob/master/vid/demo.gif)
 
 
 ### Built With
@@ -41,11 +40,8 @@ Here's a blank template to get started:
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+### Usage
+Currently there is no build provided you must do it yourself with visual, sorry.
 
 
 <!-- LICENSE -->
@@ -59,9 +55,6 @@ Distributed under the MIT License.
 
   - Antonin Perrin      -     [![LinkedIn][linkedin-shield]](https://www.linkedin.com/in/antonin-perrin-6b9060197/)<br>
   - Nathan Rinalduzzi   -     [@Natmad1](https://twitter.com/Natmad1)  [![LinkedIn][linkedin-shield]](https://www.linkedin.com/in/nathan-rinalduzzi-388b52197/)<br>
-
-Project Link: [https://github.com/perriguigui/StegaSoft](https://github.com/perriguigui/StegaSoft)
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
