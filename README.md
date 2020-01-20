@@ -17,9 +17,9 @@
 ## Table of Contents
 
 * [About the Project](#about-the-project)
-  * [Demo](#demo)
+  * [Sceenshot](#sceenshot)
   * [Built With](#built-with)
-  * [Usage](#usage)
+* [Usage](#usage)
 * [License](#license)
 * [Contributors](#contributors)
 
@@ -29,7 +29,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-### Demo
+### Sceenshot
 ![StegaSoft Demo](https://github.com/perriguigui/StegaSoft/blob/master/vid/demo.gif)
 
 
@@ -40,7 +40,7 @@
 
 
 <!-- USAGE EXAMPLES -->
-### Usage
+## Usage
 Currently there is no build provided you must do it yourself with visual, sorry.
 
 
