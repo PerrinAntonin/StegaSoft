@@ -41,7 +41,7 @@
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-Currently there is no build provided you must do it yourself with visual, sorry.
+Currently there is no build provided you must build it yourself with visual and UWP, sorry.
 
 
 <!-- LICENSE -->
